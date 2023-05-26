@@ -1,0 +1,56 @@
+{
+    "name": "MainControls",
+    "maps": [
+        {
+            "name": "Pc",
+            "id": "0dc8feac-b702-4f63-99de-7abe6adfe431",
+            "actions": [
+                {
+                    "name": "Bus Move",
+                    "type": "Value",
+                    "id": "92506137-8eb1-4c43-8acc-43afd1670dd6",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "1D Axis",
+                    "id": "24df0470-256e-4d01-8ad9-c6b5a6f07c9f",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Bus Move",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "822bca22-5ede-4a1f-a3cd-1580606a746a",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Bus Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "9b678fc3-db88-4ef0-bed3-9fc4b49b7e60",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Bus Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
