@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
 
-public class Obstacle : MonoBehaviour
+public class Obstacle : MonoBehaviour, IInteractable
 {
-    [SerializeField] private float dividePassenger;
+    [SerializeField] private int dividePassenger;
 
-    public float DividePassenger => dividePassenger;
-
-
+    public int DividePassenger => dividePassenger;
+    public InteractableType GetInteractableType() => InteractableType.Obstacle;
+    public void Select()
+    {
+        Destroy(gameObject);
+    }
 }

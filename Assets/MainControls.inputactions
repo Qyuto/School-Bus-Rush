@@ -50,6 +50,34 @@
                     "isPartOfComposite": true
                 }
             ]
+        },
+        {
+            "name": "Mobile",
+            "id": "a4c30115-2bc1-4a5f-a13e-78b8ca967e6d",
+            "actions": [
+                {
+                    "name": "Bus Movement",
+                    "type": "Value",
+                    "id": "280417f9-9842-423b-af82-b8337a32ebdb",
+                    "expectedControlType": "Touch",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "00b51d58-d31e-4c0e-9fce-0ea16b8f9fa5",
+                    "path": "<Touchscreen>/primaryTouch",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Bus Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []
