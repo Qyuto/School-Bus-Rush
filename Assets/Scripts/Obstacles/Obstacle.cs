@@ -6,7 +6,7 @@ public class Obstacle : MonoBehaviour, IInteractable
 
     public int DividePassenger => dividePassenger;
     public InteractableType GetInteractableType() => InteractableType.Obstacle;
-    public void Select()
+    public virtual void Select()
     {
         Destroy(gameObject);
     }

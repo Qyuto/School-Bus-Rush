@@ -8,5 +8,5 @@ public enum InteractableType
 {
     Passenger = 0,
     Obstacle,
-    Boost
+    Modifier
 }

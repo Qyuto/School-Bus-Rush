@@ -11,12 +11,15 @@ namespace Bus
 
         public UnityEvent<int> onBusCollectPassenger;
         public UnityEvent<int> onBusLostPassenger;
+
+        private Animator _busTextAnimator;
         public int CurrentPassenger => currentPassenger;
 
         private void Awake()
         {
             onBusCollectPassenger.AddListener(OnCollectPeople);
             onBusLostPassenger.AddListener(OnLostPeople);
+            _busTextAnimator = busPassengerCountText.GetComponent<Animator>();
         }
 
         private void OnLostPeople(int removePeopleSize)
@@ -24,12 +27,15 @@ namespace Bus
             currentPassenger -= removePeopleSize;
             busPassengerCountText.text = currentPassenger.ToString();
             if (currentPassenger <= 0) Debug.Log($"BUS: Dont have passengers");
+            _busTextAnimator.SetTrigger("Bounce");
         }
 
         private void OnCollectPeople(int addPeopleSize)
         {
             currentPassenger += addPeopleSize;
             busPassengerCountText.text = currentPassenger.ToString();
+            
+            _busTextAnimator.SetTrigger("Bounce");
         }
     }
 }
