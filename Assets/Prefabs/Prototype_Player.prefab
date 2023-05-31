@@ -422,7 +422,7 @@ GameObject:
   - component: {fileID: 3367185219688901033}
   - component: {fileID: 3367185219688901032}
   m_Layer: 0
-  m_Name: LooseLayer
+  m_Name: LossLayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1108,7 +1108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: faca07b0c0814225af1c6c538cdd9948, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  searchExtend: {x: 3.21, y: 3.6, z: 12.68}
+  searchExtend: {x: 3, y: 3.6, z: 12}
   interactableMask:
     serializedVersion: 2
     m_Bits: 448
@@ -2172,7 +2172,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0, g: 0.91717124, b: 1, a: 0}
+  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -2294,7 +2294,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Not enough passengers
+  m_text: Failed attempt
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2690,6 +2690,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2223465637790820728, guid: 60b1ba94addbec740b0aff148be5d382, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2223465637792590744, guid: 60b1ba94addbec740b0aff148be5d382, type: 3}
+      propertyPath: m_ReceiveShadows
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5593900468314838846, guid: 60b1ba94addbec740b0aff148be5d382, type: 3}

@@ -1,13 +1,16 @@
 ﻿using UnityEngine;
 
-public class Obstacle : MonoBehaviour, IInteractable
+namespace Obstacles
 {
-    [SerializeField] private int dividePassenger;
-
-    public int DividePassenger => dividePassenger;
-    public InteractableType GetInteractableType() => InteractableType.Obstacle;
-    public virtual void Select()
+    public class Obstacle : MonoBehaviour, IInteractable
     {
-        Destroy(gameObject);
+        [SerializeField] private int dividePassenger;
+
+        public int DividePassenger => dividePassenger;
+        public InteractableType GetInteractableType() => InteractableType.Obstacle;
+        public virtual void Select(GameObject interactor)
+        {
+            Destroy(gameObject);
+        }
     }
 }

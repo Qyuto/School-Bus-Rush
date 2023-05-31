@@ -1,5 +1,5 @@
-﻿using System;
-using Modifier;
+﻿using Modifier;
+using Obstacles;
 using UnityEngine;
 
 namespace Bus
@@ -52,7 +52,7 @@ namespace Bus
                     _boostReceiver.ReceiveModifier((BusModifier)(interactable));
                     break;
             }
-            interactable.Select();
+            interactable.Select(gameObject);
         }
 
         private void OnDrawGizmos()

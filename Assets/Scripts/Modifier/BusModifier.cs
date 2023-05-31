@@ -8,7 +8,7 @@ namespace Modifier
 
         public ModifierType Type => modifierType;
         public InteractableType GetInteractableType() => InteractableType.Modifier;
-        public void Select()
+        public void Select(GameObject interact)
         {
             Destroy(gameObject);
         }

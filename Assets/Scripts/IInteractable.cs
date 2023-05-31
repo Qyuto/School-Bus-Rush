@@ -1,12 +1,15 @@
-﻿public interface IInteractable
+﻿using UnityEngine;
+
+public interface IInteractable
 {
     public InteractableType GetInteractableType();
-    public void Select();
+    public void Select(GameObject interactor);
 }
 
 public enum InteractableType
 {
     Passenger = 0,
     Obstacle,
-    Modifier
+    Modifier,
+    LoseObject
 }
