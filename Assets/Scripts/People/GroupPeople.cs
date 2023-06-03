@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Bus;
+using UnityEngine;
 using TMPro;
 using DG.Tweening;
 
@@ -14,14 +15,16 @@ public class GroupPeople : MonoBehaviour, IInteractable
         textPeopleCount.text = peopleCount.ToString();
     }
 
-    public InteractableType GetInteractableType() => InteractableType.Passenger;
-
-    public void Select(GameObject interact)
+    public void Select(IBusInteractor interact)
     {
+        PassengerCount passengerCount = interact.GetPassengerCountComponent();
+        passengerCount.onBusCollectPassenger?.Invoke(peopleCount);
+
+        Transform interactTransform = interact.GetTransform();
         GetComponent<Collider>().enabled = false;
-        transform.DOJump(interact.transform.position + interact.transform.forward * jumpOffset, 5, 1, 0.9f).onComplete += OnDotComplete;
+        transform.DOJump(interactTransform.position + interactTransform.forward * jumpOffset, 5, 1, 0.9f).onComplete +=
+            OnDotComplete;
         transform.DOScale(0.2f, 0.9f);
-        // transform.DOShakeScale(1f, 0.5f, 3);
     }
 
     private void OnDotComplete()

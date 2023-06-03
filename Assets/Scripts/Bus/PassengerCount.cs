@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -13,12 +14,14 @@ namespace Bus
         public UnityEvent<int> onBusLostPassenger;
 
         private Animator _busTextAnimator;
+        private BusLevelCompletion _levelCompletion;
         public int CurrentPassenger => currentPassenger;
 
         private void Awake()
         {
             onBusCollectPassenger.AddListener(OnCollectPeople);
             onBusLostPassenger.AddListener(OnLostPeople);
+            _levelCompletion = GetComponent<BusLevelCompletion>();
             _busTextAnimator = busPassengerCountText.GetComponent<Animator>();
         }
 
@@ -26,7 +29,7 @@ namespace Bus
         {
             currentPassenger -= removePeopleSize;
             busPassengerCountText.text = currentPassenger.ToString();
-            if (currentPassenger <= 0) Debug.Log($"BUS: Dont have passengers");
+            if (currentPassenger <= 0 && !_levelCompletion.isArrived) _levelCompletion.onBusLevelFailComplete?.Invoke();
             _busTextAnimator.SetTrigger("Bounce");
         }
 
@@ -34,8 +37,13 @@ namespace Bus
         {
             currentPassenger += addPeopleSize;
             busPassengerCountText.text = currentPassenger.ToString();
-            
             _busTextAnimator.SetTrigger("Bounce");
+        }
+
+        private void OnDestroy()
+        {
+            onBusCollectPassenger.RemoveAllListeners();
+            onBusCollectPassenger.RemoveAllListeners();
         }
     }
 }

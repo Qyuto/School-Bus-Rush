@@ -1,3 +1,4 @@
+using Bus;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -12,32 +13,35 @@ public class BusMovement : MonoBehaviour
     [SerializeField] private Transform fronLeftWheelModel;
     [SerializeField] private WheelCollider frontRightWheel;
     [SerializeField] private Transform fronRightWheelModel;
+    [SerializeField] private WheelCollider backLeftWheel;
+    [SerializeField] private WheelCollider backRightWheel;
     [SerializeField] private float velocityLimit = 5;
     [SerializeField] private float busSpeed = 500;
     [SerializeField] private float wheelSteerAngel = 30;
 
-    public UnityEvent onBusFinished;
-    public UnityEvent onBusFailFinished;
-
     private float _horizontalMove;
     private Rigidbody _busRigidBody;
     private int _lastIndexFinger;
-
+    private BusLevelCompletion _levelCompletion;
+    
     public bool canMove { get; private set; }
 
     private void Awake()
     {
+        _levelCompletion = GetComponent<BusLevelCompletion>();
         _busRigidBody = GetComponent<Rigidbody>();
         frontLeftWheel.motorTorque = busSpeed;
         frontRightWheel.motorTorque = busSpeed;
-        onBusFinished.AddListener(StopBus);
-        onBusFailFinished.AddListener(StopBus);
+        _levelCompletion.onBusArrivedAtEnd.AddListener(StopBus);
+        _levelCompletion.onBusLevelFailComplete.AddListener(StopBus);
         canMove = true;
     }
 
     private void OnEnable()
     {
 #if Mobile
+        Application.targetFrameRate = 60;
+        QualitySettings.vSyncCount = 0;
         mobileMoveReference.action.Enable();
         EnhancedTouchSupport.Enable();
         Touch.onFingerDown += OnAnyFingerDown;
@@ -115,6 +119,9 @@ public class BusMovement : MonoBehaviour
         canMove = false;
         frontLeftWheel.motorTorque = 0;
         frontRightWheel.motorTorque = 0;
-        _busRigidBody.velocity = Vector3.zero;
+        frontLeftWheel.brakeTorque = 500000f;
+        frontRightWheel.brakeTorque = 500000f;
+        backLeftWheel.brakeTorque = 1000000f;
+        backRightWheel.brakeTorque = 1000000f;
     }
 }

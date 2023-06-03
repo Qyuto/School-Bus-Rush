@@ -304,7 +304,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ca168e7d7274996aabc1351ecfa9fc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boostType: 1
+  modifierType: 0
+  passengerBoostType: 0
   maxBoostValue: 10
   minBoostValue: 1
   valueText: {fileID: 7218386770383112326}
