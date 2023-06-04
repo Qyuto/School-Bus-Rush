@@ -3172,51 +3172,83 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5593900468314838846, guid: 60b1ba94addbec740b0aff148be5d382, type: 3}
       propertyPath: m_Center.x
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5593900468314838846, guid: 60b1ba94addbec740b0aff148be5d382, type: 3}
+      propertyPath: m_SuspensionDistance
+      value: 0.19620003
+      objectReference: {fileID: 0}
+    - target: {fileID: 5593900468314838846, guid: 60b1ba94addbec740b0aff148be5d382, type: 3}
+      propertyPath: m_ForceAppPointDistance
+      value: 2.1599998
       objectReference: {fileID: 0}
     - target: {fileID: 5593900468314838846, guid: 60b1ba94addbec740b0aff148be5d382, type: 3}
       propertyPath: m_SuspensionSpring.damper
-      value: 4500
+      value: 41761.51
       objectReference: {fileID: 0}
     - target: {fileID: 5593900468314838846, guid: 60b1ba94addbec740b0aff148be5d382, type: 3}
       propertyPath: m_SuspensionSpring.spring
-      value: 45000
+      value: 261009.45
       objectReference: {fileID: 0}
     - target: {fileID: 5593900468801541530, guid: 60b1ba94addbec740b0aff148be5d382, type: 3}
       propertyPath: m_Center.x
-      value: -1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5593900468801541530, guid: 60b1ba94addbec740b0aff148be5d382, type: 3}
+      propertyPath: m_SuspensionDistance
+      value: 0.19620001
+      objectReference: {fileID: 0}
+    - target: {fileID: 5593900468801541530, guid: 60b1ba94addbec740b0aff148be5d382, type: 3}
+      propertyPath: m_ForceAppPointDistance
+      value: 2.1599998
       objectReference: {fileID: 0}
     - target: {fileID: 5593900468801541530, guid: 60b1ba94addbec740b0aff148be5d382, type: 3}
       propertyPath: m_SuspensionSpring.damper
-      value: 4500
+      value: 39966.176
       objectReference: {fileID: 0}
     - target: {fileID: 5593900468801541530, guid: 60b1ba94addbec740b0aff148be5d382, type: 3}
       propertyPath: m_SuspensionSpring.spring
-      value: 45000
+      value: 249788.6
       objectReference: {fileID: 0}
     - target: {fileID: 5593900469078306156, guid: 60b1ba94addbec740b0aff148be5d382, type: 3}
       propertyPath: m_Center.x
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5593900469078306156, guid: 60b1ba94addbec740b0aff148be5d382, type: 3}
+      propertyPath: m_SuspensionDistance
+      value: 0.1962
+      objectReference: {fileID: 0}
+    - target: {fileID: 5593900469078306156, guid: 60b1ba94addbec740b0aff148be5d382, type: 3}
+      propertyPath: m_ForceAppPointDistance
+      value: 2.1599998
       objectReference: {fileID: 0}
     - target: {fileID: 5593900469078306156, guid: 60b1ba94addbec740b0aff148be5d382, type: 3}
       propertyPath: m_SuspensionSpring.damper
-      value: 4500
+      value: 24033.816
       objectReference: {fileID: 0}
     - target: {fileID: 5593900469078306156, guid: 60b1ba94addbec740b0aff148be5d382, type: 3}
       propertyPath: m_SuspensionSpring.spring
-      value: 45000
+      value: 150211.34
       objectReference: {fileID: 0}
     - target: {fileID: 5593900469135783571, guid: 60b1ba94addbec740b0aff148be5d382, type: 3}
       propertyPath: m_Center.x
-      value: -1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5593900469135783571, guid: 60b1ba94addbec740b0aff148be5d382, type: 3}
+      propertyPath: m_SuspensionDistance
+      value: 0.1962
+      objectReference: {fileID: 0}
+    - target: {fileID: 5593900469135783571, guid: 60b1ba94addbec740b0aff148be5d382, type: 3}
+      propertyPath: m_ForceAppPointDistance
+      value: 2.1599998
       objectReference: {fileID: 0}
     - target: {fileID: 5593900469135783571, guid: 60b1ba94addbec740b0aff148be5d382, type: 3}
       propertyPath: m_SuspensionSpring.damper
-      value: 4500
+      value: 22238.48
       objectReference: {fileID: 0}
     - target: {fileID: 5593900469135783571, guid: 60b1ba94addbec740b0aff148be5d382, type: 3}
       propertyPath: m_SuspensionSpring.spring
-      value: 45000
+      value: 138990.5
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2223465637793720667, guid: 60b1ba94addbec740b0aff148be5d382, type: 3}
