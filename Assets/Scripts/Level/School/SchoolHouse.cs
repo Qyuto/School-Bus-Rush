@@ -18,6 +18,8 @@ namespace Level.School
         private SchoolHouseUI _schoolHouseUI;
         private BusLevelCompletion _levelCompletion;
         private BusRatePassenger _ratePassenger;
+        private PassengerCount _passengerCount;
+
         private readonly Collider[] _overlappedCollider = new Collider[5];
 
         private void Awake()
@@ -69,7 +71,11 @@ namespace Level.School
         {
             _currentPassengerInSchool++;
             _ratePassenger.TryAddRate(_currentPassengerInSchool);
-            _currentPassengerRateInSchool += 1 * _ratePassenger.Rate;
+
+            int passengerRate = 1 * _ratePassenger.Rate;
+            _currentPassengerRateInSchool += passengerRate;
+            _passengerCount.AddTotalPassenger(passengerRate);
+
             _schoolHouseUI.UpdatePassengerText(_currentPassengerRateInSchool);
             _schoolHouseUI.UpdateRateSlider(_currentPassengerInSchool);
             sizeScaler.IncreaseScale((Vector3)Vector2.one / 500f, true);
@@ -82,15 +88,17 @@ namespace Level.School
 
         private void GetComponents(GameObject bus)
         {
-            PassengerCount passengerCount = bus.GetComponentInParent<PassengerCount>();
-            AgentCoordinator agentCoordinator = passengerCount.GetComponent<AgentCoordinator>();
-            _levelCompletion = passengerCount.GetComponent<BusLevelCompletion>();
+            IBusInteractor busInteractor = bus.GetComponentInParent<IBusInteractor>();
+            if (busInteractor == null) return;
+
+            _passengerCount = busInteractor.GetPassengerCountComponent();
+            _levelCompletion = busInteractor.GetBusLevelCompletion();
             _ratePassenger = _levelCompletion.GetComponent<BusRatePassenger>();
-            if (passengerCount == null || _levelCompletion == null || agentCoordinator == null) return;
+            AgentCoordinator agentCoordinator = _passengerCount.GetComponent<AgentCoordinator>();
 
             _schoolHouseUI.Init(_ratePassenger);
             agentCoordinator.SetAgentDestination(transform.position + destroyRayPosition);
-            _beforeUnloadingPassengerCount = passengerCount.CurrentPassenger;
+            _beforeUnloadingPassengerCount = _passengerCount.CurrentPassenger;
             _levelCompletion.onBusArrivedAtEnd?.Invoke();
         }
 

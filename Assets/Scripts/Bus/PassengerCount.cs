@@ -1,5 +1,4 @@
-﻿using System;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -7,6 +6,7 @@ namespace Bus
 {
     public class PassengerCount : MonoBehaviour
     {
+        [SerializeField] private LevelLayerUI levelLayerUI;
         [SerializeField] private int currentPassenger;
         [SerializeField] private TextMeshPro busPassengerCountText;
 
@@ -15,6 +15,7 @@ namespace Bus
 
         private Animator _busTextAnimator;
         private BusLevelCompletion _levelCompletion;
+        public int totalPassenger { get; private set; }
         public int CurrentPassenger => currentPassenger;
 
         private void Awake()
@@ -38,6 +39,12 @@ namespace Bus
             currentPassenger += addPeopleSize;
             busPassengerCountText.text = currentPassenger.ToString();
             _busTextAnimator.SetTrigger("Bounce");
+        }
+
+        public void AddTotalPassenger(int size)
+        {
+            totalPassenger += size;
+            levelLayerUI.UpdateMoneyText(totalPassenger);
         }
 
         private void OnDestroy()

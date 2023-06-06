@@ -13,7 +13,6 @@ public class FinishLevelUI : MonoBehaviour
     [SerializeField] private BusLevelCompletion busLevelCompletion;
     [SerializeField] private PassengerCount passengerCount;
     [Header("Buttons")] [SerializeField] private Button nextLevelButton;
-    [SerializeField] private Button getDebugInfoButton;
     [SerializeField] private Button restartLevelButton;
 
     private void Awake()
@@ -30,14 +29,14 @@ public class FinishLevelUI : MonoBehaviour
     {
         looseGroup.transform.parent.gameObject.SetActive(true);
         looseGroup.gameObject.SetActive(true);
-        passengerCountText.text = passengerCount.CurrentPassenger.ToString();
+        passengerCountText.text = $"Total passengers: {passengerCount.CurrentPassenger.ToString()}";
     }
 
     private void ShowUI()
     {
         finishGroup.transform.parent.gameObject.SetActive(true);
         finishGroup.gameObject.SetActive(true);
-        passengerCountText.text = passengerCount.CurrentPassenger.ToString();
+        passengerCountText.text = $"Total passengers: {passengerCount.CurrentPassenger.ToString()}";
     }
 
     private void LoadNewLevel()

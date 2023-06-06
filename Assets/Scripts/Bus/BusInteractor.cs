@@ -11,7 +11,8 @@ namespace Bus
         private PassengerCount _passengerCount;
         private ModifierReceiver _modReceiver;
         private BusLevelCompletion _levelCompletion;
-
+        private BusRatePassenger _ratePassenger;
+        
         private void Awake()
         {
             _levelCompletion = GetComponent<BusLevelCompletion>();
@@ -60,6 +61,8 @@ namespace Bus
         public PassengerCount GetPassengerCountComponent() => _passengerCount;
         public ModifierReceiver GetModifierReceiver() => _modReceiver;
         public BusLevelCompletion GetBusLevelCompletion() => _levelCompletion;
+        public BusRatePassenger GetBusRatePassenger() => _ratePassenger;
+
         public Transform GetTransform() => transform;
     }
 }

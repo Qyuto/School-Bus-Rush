@@ -1,18 +1,16 @@
 using Bus;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.EnhancedTouch;
 using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
 
 public class BusMovement : MonoBehaviour
 {
-    [SerializeField] private InputActionReference pcMoveReference;
     [SerializeField] private InputActionReference mobileMoveReference;
     [SerializeField] private WheelCollider frontLeftWheel;
-    [SerializeField] private Transform fronLeftWheelModel;
+    [SerializeField] private Transform frontLeftWheelModel;
     [SerializeField] private WheelCollider frontRightWheel;
-    [SerializeField] private Transform fronRightWheelModel;
+    [SerializeField] private Transform frontRightWheelModel;
     [SerializeField] private WheelCollider backLeftWheel;
     [SerializeField] private WheelCollider backRightWheel;
     [SerializeField] private float velocityLimit = 5;
@@ -23,18 +21,16 @@ public class BusMovement : MonoBehaviour
     private Rigidbody _busRigidBody;
     private int _lastIndexFinger;
     private BusLevelCompletion _levelCompletion;
-    
+
     public bool canMove { get; private set; }
 
     private void Awake()
     {
         _levelCompletion = GetComponent<BusLevelCompletion>();
         _busRigidBody = GetComponent<Rigidbody>();
-        frontLeftWheel.motorTorque = busSpeed;
-        frontRightWheel.motorTorque = busSpeed;
+
         _levelCompletion.onBusArrivedAtEnd.AddListener(StopBus);
         _levelCompletion.onBusLevelFailComplete.AddListener(StopBus);
-        canMove = true;
     }
 
     private void OnEnable()
@@ -47,11 +43,11 @@ public class BusMovement : MonoBehaviour
         Touch.onFingerDown += OnAnyFingerDown;
         Touch.onFingerUp += OnAnyFingerUp;
         Touch.onFingerMove += OnAnyFingerMove;
-#else
-        pcMoveReference.action.performed += PcReadInputValue;
-        pcMoveReference.action.canceled += PcReadInputValue;
-        pcMoveReference.action.Enable();
 #endif
+
+        frontLeftWheel.motorTorque = busSpeed;
+        frontRightWheel.motorTorque = busSpeed;
+        canMove = true;
     }
 
     private void OnDisable()
@@ -61,16 +57,7 @@ public class BusMovement : MonoBehaviour
         Touch.onFingerUp -= OnAnyFingerUp;
         Touch.onFingerMove -= OnAnyFingerMove;
         mobileMoveReference.action.Disable();
-#else
-        pcMoveReference.action.performed -= PcReadInputValue;
-        pcMoveReference.action.canceled -= PcReadInputValue;
-        pcMoveReference.action.Disable();
 #endif
-    }
-
-    private void PcReadInputValue(InputAction.CallbackContext obj)
-    {
-        _horizontalMove = obj.ReadValue<float>();
     }
 
     private void OnAnyFingerMove(Finger obj)
@@ -105,8 +92,8 @@ public class BusMovement : MonoBehaviour
         frontLeftWheel.steerAngle = wheelAngelRotation;
         frontRightWheel.steerAngle = wheelAngelRotation;
 
-        fronRightWheelModel.localRotation = Quaternion.Euler(0, wheelAngelRotation, 0);
-        fronLeftWheelModel.localRotation = Quaternion.Euler(0, wheelAngelRotation, 0);
+        frontRightWheelModel.localRotation = Quaternion.Euler(0, wheelAngelRotation, 0);
+        frontLeftWheelModel.localRotation = Quaternion.Euler(0, wheelAngelRotation, 0);
 
 
         Vector3 currentVelocity = _busRigidBody.velocity;
