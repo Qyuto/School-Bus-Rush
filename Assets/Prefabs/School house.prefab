@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 1487155764631265330}
   - component: {fileID: 5902619688125734039}
   - component: {fileID: 3843825273306046673}
-  - component: {fileID: 7770135180193936766}
   m_Layer: 0
   m_Name: School model
   m_TagString: Untagged
@@ -33,8 +32,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 6415062927489161826}
+  m_Children: []
   m_Father: {fileID: 6816171976629028199}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1330,7 +1328,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2452
+  m_VersionIndex: 2479
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -1420,24 +1418,20 @@ MeshCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1032071491276793226}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 4
+  serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
---- !u!114 &7770135180193936766
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1032071491276793226}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33bbbde08b7e4eb1ac89ce201dcd2f1a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1448283237093453174
 GameObject:
   m_ObjectHideFlags: 0
@@ -1810,8 +1804,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7641959741701637422}
-  m_Father: {fileID: 7265811722572233528}
-  m_RootOrder: 0
+  m_Father: {fileID: 6816171976629028199}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1835,7 +1829,9 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
+  m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -2026,6 +2022,7 @@ GameObject:
   - component: {fileID: 6816171976629028196}
   - component: {fileID: 6816171976629028206}
   - component: {fileID: 2891696812186490790}
+  - component: {fileID: 3949308542507566507}
   m_Layer: 0
   m_Name: School house
   m_TagString: Untagged
@@ -2047,9 +2044,10 @@ Transform:
   m_Children:
   - {fileID: 6816171978385919618}
   - {fileID: 6816171977379960301}
+  - {fileID: 6415062927489161826}
   - {fileID: 7265811722572233528}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6816171976629028196
 MonoBehaviour:
@@ -2063,13 +2061,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 656773bf2c18482fba297ef658b50474, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sizeScaler: {fileID: 7770135180193936766}
+  sizeScaler: {fileID: 3949308542507566507}
   minPassengerCount: 10
   busTrigger: {fileID: 6816171978385919619}
   overlappedLayerMask:
     serializedVersion: 2
     m_Bits: 64
-  destroyRayPosition: {x: 0, y: -6.5, z: -8.23}
+  destroyRayPosition: {x: 0, y: -8.5, z: -8.23}
   destroyRadius: 3
 --- !u!65 &6816171976629028206
 BoxCollider:
@@ -2079,9 +2077,17 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6816171976629028198}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Size: {x: 20, y: 13, z: 16}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &2891696812186490790
@@ -2144,6 +2150,18 @@ MonoBehaviour:
     textColor:
       serializedVersion: 2
       rgba: 4294967295
+--- !u!114 &3949308542507566507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6816171976629028198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33bbbde08b7e4eb1ac89ce201dcd2f1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6816171977379960300
 GameObject:
   m_ObjectHideFlags: 0
@@ -2372,9 +2390,17 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6816171978385919621}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 1
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Size: {x: 30, y: 12.67, z: 20}
   m_Center: {x: 0, y: -1.5, z: 0}
 --- !u!1 &9093493416911415953

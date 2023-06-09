@@ -1,10 +1,11 @@
-﻿using TMPro;
+﻿using Save;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
 namespace Bus
 {
-    public class PassengerCount : MonoBehaviour
+    public class PassengerCount : MonoBehaviour, IDataPersistence
     {
         [SerializeField] private LevelLayerUI levelLayerUI;
         [SerializeField] private int currentPassenger;
@@ -51,6 +52,17 @@ namespace Bus
         {
             onBusCollectPassenger.RemoveAllListeners();
             onBusCollectPassenger.RemoveAllListeners();
+        }
+
+        public void LoadGame(GameData gameData)
+        {
+            totalPassenger = gameData.totalPassenger;
+            levelLayerUI.UpdateMoneyText(totalPassenger);
+        }
+
+        public void SaveGame(ref GameData gameData)
+        {
+            gameData.totalPassenger = totalPassenger;
         }
     }
 }

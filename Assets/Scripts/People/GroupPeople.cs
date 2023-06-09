@@ -7,6 +7,7 @@ public class GroupPeople : MonoBehaviour, IInteractable
 {
     [SerializeField] private float jumpOffset = 2f;
     [SerializeField] private int peopleCount;
+    [SerializeField] private Transform[] peopleTransforms;
     [SerializeField] private TextMeshPro textPeopleCount;
     public int PeopleCount => peopleCount;
 

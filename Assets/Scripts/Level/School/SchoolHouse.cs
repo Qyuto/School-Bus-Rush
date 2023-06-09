@@ -79,6 +79,7 @@ namespace Level.School
             _schoolHouseUI.UpdatePassengerText(_currentPassengerRateInSchool);
             _schoolHouseUI.UpdateRateSlider(_currentPassengerInSchool);
             sizeScaler.IncreaseScale((Vector3)Vector2.one / 500f, true);
+            destroyRayPosition = new Vector3(destroyRayPosition.x,  -transform.position.y, destroyRayPosition.z);
         }
 
         private void DestroyOverlappedCollider(int index)

@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Bus;
+using People;
+using Save;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -12,8 +14,9 @@ namespace Level
         [SerializeField] private Transform agentSpawnTransform;
         [SerializeField] private PassengerCount passengerCount;
         [SerializeField] private BusLevelCompletion levelCompletion;
+        [SerializeField] private DataPersistence dataPersistence;
 
-        private readonly List<NavMeshAgent> _agentPool = new List<NavMeshAgent>(1000);
+        private readonly List<Agent> _agentPool = new List<Agent>(1000);
         private Vector3 _agentDestination;
 
         private void Awake()
@@ -29,8 +32,10 @@ namespace Level
             {
                 NavMeshAgent agent = Instantiate(agentPrefab, agentSpawnTransform.position,
                     agentSpawnTransform.rotation);
+
+
                 agent.gameObject.SetActive(false);
-                _agentPool.Add(agent);
+                _agentPool.Add(new Agent(agent.GetComponentInChildren<Animator>(), agent));
             }
         }
 
@@ -42,23 +47,24 @@ namespace Level
                 return;
             }
 
-            for (int i = 0; i < size; i++) Destroy(_agentPool[i].gameObject);
+            for (int i = 0; i < size; i++) Destroy(_agentPool[i].meshAgent.gameObject);
             _agentPool.RemoveRange(0, size);
         }
 
         private IEnumerator EnableAgents()
         {
             passengerCount.onBusLostPassenger.RemoveListener(DestroyAgents);
-            foreach (NavMeshAgent agent in _agentPool)
+            foreach (var agent in _agentPool)
             {
                 yield return new WaitForSeconds(Time.fixedDeltaTime);
-                agent.transform.position = agentSpawnTransform.position;
-                agent.gameObject.SetActive(true);
+
+                agent.meshAgent.transform.position = agentSpawnTransform.position;
+                agent.meshAgent.gameObject.SetActive(true);
                 agent.SetDestination(_agentDestination);
                 passengerCount.onBusLostPassenger?.Invoke(1);
             }
         }
-        
+
         public void SetAgentDestination(Vector3 target)
         {
             _agentDestination = target;
