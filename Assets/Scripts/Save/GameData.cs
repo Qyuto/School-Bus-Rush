@@ -22,18 +22,19 @@ namespace Save
     [Serializable]
     public class SkinData
     {
-        public int[] totalPurchasedPassengerSkins;
+        public string[] totalPurchasedPassengerSkins;
         public string lastSelectedPassengerSkin;
 
-        public int[] totalPurchasedSchoolSkins;
+        public string[] totalPurchasedSchoolSkins;
         public string lastSelectedSchoolSkin;
 
         public SkinData()
         {
-            totalPurchasedPassengerSkins = Array.Empty<int>();
-            totalPurchasedSchoolSkins = Array.Empty<int>();
             lastSelectedPassengerSkin = "passenger_default";
             lastSelectedSchoolSkin = "school_default";
+
+            totalPurchasedPassengerSkins = new string[] { "passenger_default" };
+            totalPurchasedSchoolSkins = new string[] { "school_default" };
         }
     }
     

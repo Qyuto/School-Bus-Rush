@@ -7,12 +7,6 @@ namespace UI
     {
         [SerializeField] private Rigidbody busRigidBody;
         [SerializeField] private TextMeshProUGUI fpsText;
-        [SerializeField] private TextMeshProUGUI busSteedText;
-        
-        private void FixedUpdate()
-        {
-            busSteedText.text = $"Bus Velocity: {busRigidBody.velocity.magnitude:0.0}";
-        }
 
         private void Update()
         {

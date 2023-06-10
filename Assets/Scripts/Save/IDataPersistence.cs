@@ -1,8 +1,12 @@
 ﻿namespace Save
 {
-    public interface IDataPersistence
+    public interface ISaveDataPersistence
     {
-        public void LoadGame(GameData gameData);
-        public void SaveGame(ref GameData gameData);
+        void SaveGame(ref GameData gameData);
+    }
+
+    public interface ILoadDataPersistence
+    {
+        void LoadGame(GameData gameData);
     }
 }

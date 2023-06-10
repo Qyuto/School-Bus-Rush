@@ -1328,7 +1328,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2479
+  m_VersionIndex: 2485
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -2023,6 +2023,7 @@ GameObject:
   - component: {fileID: 6816171976629028206}
   - component: {fileID: 2891696812186490790}
   - component: {fileID: 3949308542507566507}
+  - component: {fileID: 1181271683767899092}
   m_Layer: 0
   m_Name: School house
   m_TagString: Untagged
@@ -2162,6 +2163,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33bbbde08b7e4eb1ac89ce201dcd2f1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1181271683767899092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6816171976629028198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90a91b9c3c9e44fd9d71405c75b4aeea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startChange: 1
+  currentModel: {fileID: 7265811722572233528}
 --- !u!1 &6816171977379960300
 GameObject:
   m_ObjectHideFlags: 0

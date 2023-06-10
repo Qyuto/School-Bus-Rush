@@ -2,15 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Save
 {
     public class DataPersistence : MonoBehaviour
     {
-        private List<IDataPersistence> _dataPersistence;
+        private List<ILoadDataPersistence> _dataLoadPersistence;
+        private List<ISaveDataPersistence> _dataSavePersistence;
+
         private FileDataHandler _dataHandler;
         public GameData data;
-        public static DataPersistence Instance; 
+        public static DataPersistence Instance;
+        public Action onLoadFinished;
 
         private void Awake()
         {
@@ -21,7 +25,8 @@ namespace Save
         private void Start()
         {
             _dataHandler = new FileDataHandler() { fileName = "player.allure" };
-            _dataPersistence = GameObject.FindObjectsOfType<MonoBehaviour>().OfType<IDataPersistence>().ToList();
+            _dataLoadPersistence = GameObject.FindObjectsOfType<MonoBehaviour>().OfType<ILoadDataPersistence>().ToList();
+            _dataSavePersistence = GameObject.FindObjectsOfType<MonoBehaviour>().OfType<ISaveDataPersistence>().ToList();
             LoadGame();
         }
 
@@ -32,7 +37,7 @@ namespace Save
 
         private void SaveGame()
         {
-            foreach (var persistence in _dataPersistence) persistence.SaveGame(ref data);
+            foreach (var persistence in _dataSavePersistence) persistence.SaveGame(ref data);
             _dataHandler.Save(data);
         }
 
@@ -40,12 +45,15 @@ namespace Save
         {
             _dataHandler.Load(ref data);
             if ((data != null && data.lastGameVersion != Application.version) || data == null) NewGame();
-            foreach (var persistence in _dataPersistence) persistence.LoadGame(data);
+            foreach (var persistence in _dataLoadPersistence) persistence.LoadGame(data);
+            onLoadFinished?.Invoke();
         }
 
         private void OnDestroy()
         {
             SaveGame();
+            Instance = null;
+            onLoadFinished = null;
         }
     }
 }

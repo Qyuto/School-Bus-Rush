@@ -1,7 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Bus;
-using People;
+using Skins;
+using Passenger;
 using Save;
 using UnityEngine;
 using UnityEngine.AI;
@@ -16,7 +17,7 @@ namespace Level
         [SerializeField] private BusLevelCompletion levelCompletion;
         [SerializeField] private DataPersistence dataPersistence;
 
-        private readonly List<Agent> _agentPool = new List<Agent>(1000);
+        private readonly List<PassengerAgent> _agentPool = new List<PassengerAgent>(1000);
         private Vector3 _agentDestination;
 
         private void Awake()
@@ -33,9 +34,8 @@ namespace Level
                 NavMeshAgent agent = Instantiate(agentPrefab, agentSpawnTransform.position,
                     agentSpawnTransform.rotation);
 
-
                 agent.gameObject.SetActive(false);
-                _agentPool.Add(new Agent(agent.GetComponentInChildren<Animator>(), agent));
+                _agentPool.Add(new PassengerAgent(agent.GetComponent<Animator>(), agent,agent.GetComponent<ChangeMesh>()));
             }
         }
 

@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 namespace Bus
 {
-    public class PassengerCount : MonoBehaviour, IDataPersistence
+    public class PassengerCount : MonoBehaviour, ISaveDataPersistence, ILoadDataPersistence
     {
         [SerializeField] private LevelLayerUI levelLayerUI;
         [SerializeField] private int currentPassenger;
