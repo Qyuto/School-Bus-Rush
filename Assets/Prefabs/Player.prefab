@@ -6396,6 +6396,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b6bc076a97b071940bd566e7cd94a47c, type: 2}
   - {fileID: 11400000, guid: 3c179d707c1fee44387e2df4b88d1851, type: 2}
   - {fileID: 11400000, guid: bbd32a4bc940fa643841ca8b1e7850e4, type: 2}
+  - {fileID: 11400000, guid: ff4c803f8c1fe2b4fb63d2b8e2b3728c, type: 2}
+  - {fileID: 11400000, guid: 7d272c726fdaa1c49b75aadb498567e9, type: 2}
   lastPassengerSkin: {fileID: 0}
   lastSchoolSKin: {fileID: 0}
 --- !u!1 &3367185219911913219

@@ -7,27 +7,16 @@ using UnityEngine;
 
 namespace UI.Shop
 {
-    public class ShopBuyHandler : SkinDataCollection, ISaveDataPersistence
+    public class ShopBuyHandler : MonoBehaviour, ILoadDataPersistence
     {
         [SerializeField] private ShopUI shopUI;
         public Action<SkinInfo> onCurrentSkinChange;
-
-        private HashSet<string> _totalPassengerSkins;
-        private HashSet<string> _totalSchoolSkins;
+        private SkinData _skinData;
 
         public bool AddNewSkin(SkinInfo info)
         {
             if (info.cost > DataPersistence.Instance.data.totalPassenger) return false;
-            switch (info.type)
-            {
-                case SkinType.Passenger:
-                    _totalPassengerSkins.Add(info.key);
-                    break;
-                case SkinType.FinishModel:
-                    _totalSchoolSkins.Add(info.key);
-                    break;
-                default: return false;
-            }
+            SkinDataCollection.Instance.AddNewSkin(info);
 
             SelectCurrentSkin(info);
             DataPersistence.Instance.data.totalPassenger -= info.cost;
@@ -37,16 +26,7 @@ namespace UI.Shop
 
         public void SelectCurrentSkin(SkinInfo info)
         {
-            switch (info.type)
-            {
-                case SkinType.Passenger:
-                    GameSkinData.lastSelectedPassengerSkin = info.key;
-                    break;
-                case SkinType.FinishModel:
-                    GameSkinData.lastSelectedSchoolSkin = info.key;
-                    break;
-            }
-
+            SkinDataCollection.Instance.SetLastSkin(info);
             onCurrentSkinChange?.Invoke(info);
         }
 
@@ -55,25 +35,17 @@ namespace UI.Shop
             switch (info.type)
             {
                 case SkinType.Passenger:
-                    return GameSkinData.totalPurchasedPassengerSkins.Contains(info.key);
+                    return _skinData.totalPurchasedPassengerSkins.Contains(info.key);
                 case SkinType.FinishModel:
-                    return GameSkinData.totalPurchasedSchoolSkins.Contains(info.key);
+                    return _skinData.totalPurchasedSchoolSkins.Contains(info.key);
             }
 
             return false;
         }
 
-        public override void LoadGame(GameData gameData)
+        public void LoadGame(GameData gameData)
         {
-            base.LoadGame(gameData);
-            _totalPassengerSkins = GameSkinData.totalPurchasedPassengerSkins.ToHashSet();
-            _totalSchoolSkins = GameSkinData.totalPurchasedSchoolSkins.ToHashSet();
-        }
-
-        public void SaveGame(ref GameData gameData)
-        {
-            GameSkinData.totalPurchasedPassengerSkins = _totalPassengerSkins.ToArray();
-            GameSkinData.totalPurchasedSchoolSkins = _totalSchoolSkins.ToArray();
+            _skinData = gameData.skinData;
         }
     }
 }

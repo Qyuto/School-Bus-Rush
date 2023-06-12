@@ -17,11 +17,17 @@ namespace UI.Shop
         private void ChangeModel(SkinInfo info)
         {
             transform.localScale = Vector3.one;
+            transform.position = Vector3.zero;
             if (_currentModel != null) Destroy(_currentModel);
             _currentModel = Instantiate(info.model, transform.position, transform.rotation, transform);
 
             if (info.type == SkinType.FinishModel)
-                transform.localScale = Vector3.one / 10;
+            {
+                float scaleFactor = 10;
+                _currentModel.transform.localScale = Vector3.one / scaleFactor;
+                float y = _currentModel.GetComponent<MeshFilter>().mesh.bounds.size.y / 2;
+                _currentModel.transform.localPosition += new Vector3(0, y / scaleFactor, 0);
+            }
         }
 
         private void Update()
