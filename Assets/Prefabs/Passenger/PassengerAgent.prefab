@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6477152859102444475}
   - component: {fileID: -3827401431421233474}
   - component: {fileID: 7795647069470741204}
-  - component: {fileID: -5059892384281676040}
+  - component: {fileID: 7330326869964495767}
   m_Layer: 6
   m_Name: PassengerAgent
   m_TagString: Untagged
@@ -100,7 +100,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &-5059892384281676040
+--- !u!114 &7330326869964495767
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -109,12 +109,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 5082308075520480369}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99e977b7e4a74ddcaeb03dc95a467123, type: 3}
+  m_Script: {fileID: 11500000, guid: 29081f18734a456f868c31920a506ea9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startChange: 0
+  immediateLoading: 0
+  loadSkinType: 0
   currentModel: {fileID: 8506582543761438286}
-  animator: {fileID: 7795647069470741204}
 --- !u!1001 &8511148098760102498
 PrefabInstance:
   m_ObjectHideFlags: 0

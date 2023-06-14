@@ -6,7 +6,7 @@ using Random = UnityEngine.Random;
 
 namespace Level.Spawner
 {
-    public class PeopleSpawner : MonoBehaviour,ILoadDataPersistence
+    public class PeopleSpawner : MonoBehaviour, ILoadDataPersistence
     {
         [SerializeField] private List<PassengerGroup> peoplesPrefab;
         [SerializeField] private List<Transform> spawnPositions;
@@ -15,8 +15,7 @@ namespace Level.Spawner
         {
             foreach (var spawnTransform in spawnPositions)
             {
-                PassengerGroup people = Instantiate(GetRandomPrefab(), spawnTransform.position, Quaternion.identity,
-                    spawnTransform);
+                PassengerGroup people = Instantiate(GetRandomPrefab(), spawnTransform.position, Quaternion.identity, spawnTransform);
             }
         }
 

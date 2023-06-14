@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace Save
 {
@@ -13,20 +12,22 @@ namespace Save
 
         private FileDataHandler _dataHandler;
         public GameData data;
-        public static DataPersistence Instance;
         public Action onLoadFinished;
+        public static DataPersistence Instance;
 
         private void Awake()
         {
             if (Instance == null) Instance = this;
             else Destroy(this);
+
+            _dataHandler = new FileDataHandler() { fileName = "player.allure" };
+            _dataLoadPersistence = FindObjectsOfType<MonoBehaviour>().OfType<ILoadDataPersistence>().ToList();
+            _dataSavePersistence = FindObjectsOfType<MonoBehaviour>().OfType<ISaveDataPersistence>().ToList();
+            PreLoadGame();
         }
 
         private void Start()
         {
-            _dataHandler = new FileDataHandler() { fileName = "player.allure" };
-            _dataLoadPersistence = GameObject.FindObjectsOfType<MonoBehaviour>().OfType<ILoadDataPersistence>().ToList();
-            _dataSavePersistence = GameObject.FindObjectsOfType<MonoBehaviour>().OfType<ISaveDataPersistence>().ToList();
             LoadGame();
         }
 
@@ -41,9 +42,13 @@ namespace Save
             _dataHandler.Save(data);
         }
 
-        private void LoadGame()
+        private void PreLoadGame()
         {
             _dataHandler.Load(ref data);
+        }
+
+        private void LoadGame()
+        {
             if ((data != null && data.lastGameVersion != Application.version) || data == null) NewGame();
             foreach (var persistence in _dataLoadPersistence) persistence.LoadGame(data);
             onLoadFinished?.Invoke();

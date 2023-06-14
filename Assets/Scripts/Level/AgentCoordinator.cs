@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Bus;
 using Skins;
 using Passenger;
-using Save;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -15,7 +14,6 @@ namespace Level
         [SerializeField] private Transform agentSpawnTransform;
         [SerializeField] private PassengerCount passengerCount;
         [SerializeField] private BusLevelCompletion levelCompletion;
-        [SerializeField] private DataPersistence dataPersistence;
 
         private readonly List<PassengerAgent> _agentPool = new List<PassengerAgent>(1000);
         private Vector3 _agentDestination;
@@ -35,7 +33,8 @@ namespace Level
                     agentSpawnTransform.rotation);
 
                 agent.gameObject.SetActive(false);
-                _agentPool.Add(new PassengerAgent(agent.GetComponent<Animator>(), agent,agent.GetComponent<ChangeMesh>()));
+                _agentPool.Add(new PassengerAgent(agent.GetComponent<Animator>(), agent,
+                    agent.GetComponent<LoadMeshSkin>()));
             }
         }
 
@@ -60,7 +59,7 @@ namespace Level
 
                 agent.meshAgent.transform.position = agentSpawnTransform.position;
                 agent.meshAgent.gameObject.SetActive(true);
-                agent.SetDestination(_agentDestination);
+                agent.StartAgent(_agentDestination);
                 passengerCount.onBusLostPassenger?.Invoke(1);
             }
         }

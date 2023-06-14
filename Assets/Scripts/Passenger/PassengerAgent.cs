@@ -8,25 +8,32 @@ namespace Passenger
     {
         public Animator animator { get; set; }
         public NavMeshAgent meshAgent { get; set; }
-        public ChangeMesh changeMesh { get; set; }
 
-        public PassengerAgent(Animator animator, NavMeshAgent navMeshAgent, ChangeMesh changeMesh)
+        private LoadMeshSkin _meshSkin;
+
+        public PassengerAgent(Animator animator, NavMeshAgent navMeshAgent, LoadMeshSkin meshSkin)
         {
             this.animator = animator;
             meshAgent = navMeshAgent;
-            this.changeMesh = changeMesh;
+            _meshSkin = meshSkin;
         }
 
-        public void SetDestination(Vector3 destination)
+        public void StartAgent(Vector3 destination)
         {
-            meshAgent.SetDestination(destination);
+            LoadAgentSkin();
             SetMoveAnimation();
+            meshAgent.SetDestination(destination);
         }
 
-        public void SetMoveAnimation()
+        private void LoadAgentSkin()
+        {
+            if (_meshSkin == null) return;
+            _meshSkin.LoadSKin();
+        }
+
+        private void SetMoveAnimation()
         {
             if (animator == null) return;
-            changeMesh.ChangeModel(SkinDataCollection.Instance.passengerSkin);
             animator.SetTrigger("Walk");
         }
     }

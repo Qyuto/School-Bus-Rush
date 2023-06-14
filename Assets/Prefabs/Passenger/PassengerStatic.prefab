@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9014618751164662837}
   - component: {fileID: 7667790325742073008}
-  - component: {fileID: 4586775377359227749}
+  - component: {fileID: 4379001821397839648}
   m_Layer: 0
   m_Name: PassengerStatic
   m_TagString: Untagged
@@ -55,7 +55,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &4586775377359227749
+--- !u!114 &4379001821397839648
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -64,12 +64,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 5860795164618368657}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99e977b7e4a74ddcaeb03dc95a467123, type: 3}
+  m_Script: {fileID: 11500000, guid: 29081f18734a456f868c31920a506ea9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startChange: 1
+  loadSkinType: 0
   currentModel: {fileID: 8535450957585713590}
-  animator: {fileID: 7667790325742073008}
 --- !u!1 &8529848323560916656
 GameObject:
   m_ObjectHideFlags: 0

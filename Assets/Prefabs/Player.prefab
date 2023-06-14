@@ -6330,8 +6330,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3367185219727140605}
-  - component: {fileID: 4087274374539214227}
-  - component: {fileID: 5084974106138599652}
+  - component: {fileID: 4800621420169305973}
+  - component: {fileID: 8199498206192302054}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -6357,7 +6357,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4087274374539214227
+--- !u!114 &4800621420169305973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3367185219727140606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc3befb2878d453e9750e2fe7de48ddc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skinDataBase: {fileID: 11400000, guid: 22038049ca5c1ae4991e2f41394d7984, type: 2}
+  lastPassengerSkin: {fileID: 0}
+  lastSchoolSKin: {fileID: 0}
+--- !u!114 &8199498206192302054
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6373,33 +6388,13 @@ MonoBehaviour:
     totalPassenger: 0
     lastLevel: 0
     skinData:
-      totalPurchasedPassengerSkins: []
-      lastSelectedPassengerSkin: passenger_Peasant
-      totalPurchasedSchoolSkins: []
-      lastSelectedSchoolSkin: 
+      totalPurchasedPassengerSkins:
+      - passenger_default
+      lastSelectedPassengerSkin: passenger_default
+      totalPurchasedSchoolSkins:
+      - school_default
+      lastSelectedSchoolSkin: school_default
     lastGameVersion: 
---- !u!114 &5084974106138599652
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3367185219727140606}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc3befb2878d453e9750e2fe7de48ddc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dataCosmetics:
-  - {fileID: 11400000, guid: d42b007631bb5484f80493a0498173d6, type: 2}
-  - {fileID: 11400000, guid: ec430aa772f6616468013c58fedd4df0, type: 2}
-  - {fileID: 11400000, guid: b6bc076a97b071940bd566e7cd94a47c, type: 2}
-  - {fileID: 11400000, guid: 3c179d707c1fee44387e2df4b88d1851, type: 2}
-  - {fileID: 11400000, guid: bbd32a4bc940fa643841ca8b1e7850e4, type: 2}
-  - {fileID: 11400000, guid: ff4c803f8c1fe2b4fb63d2b8e2b3728c, type: 2}
-  - {fileID: 11400000, guid: 7d272c726fdaa1c49b75aadb498567e9, type: 2}
-  lastPassengerSkin: {fileID: 0}
-  lastSchoolSKin: {fileID: 0}
 --- !u!1 &3367185219911913219
 GameObject:
   m_ObjectHideFlags: 0
@@ -6816,7 +6811,6 @@ MonoBehaviour:
   agentSpawnTransform: {fileID: 157292949}
   passengerCount: {fileID: 3367185220473527944}
   levelCompletion: {fileID: 1167340494}
-  dataPersistence: {fileID: 4087274374539214227}
 --- !u!114 &3520444342732633116
 MonoBehaviour:
   m_ObjectHideFlags: 0
