@@ -11,7 +11,7 @@ namespace Bus
         [SerializeField] private PassengerCount passengerCount;
 
         private TransformSizeScaler _sizeScaler;
-                
+
         private void Awake()
         {
             _sizeScaler = GetComponent<TransformSizeScaler>();
@@ -21,12 +21,17 @@ namespace Bus
 
         private void ReduceSize(IPassengerModifier modifier)
         {
-            _sizeScaler.ReduceScale(((float)modifier.GetPassengerCount() * scaleFactor),false);
+            _sizeScaler.ReduceScale(((float)modifier.GetPassengerCount() * scaleFactor), false);
         }
 
         private void IncreaseSize(IPassengerModifier modifier)
         {
-            _sizeScaler.IncreaseScale((float)modifier.GetPassengerCount() * scaleFactor,true);
+            if (transform.localScale.y > 1.5f) return;
+            float size = (float)modifier.GetPassengerCount() * scaleFactor;
+            Vector3 vectorSize = new Vector3(size, size, size) + transform.localScale;
+            if (vectorSize.y > 1.5f) size = vectorSize.y - 1.5f;
+
+            _sizeScaler.IncreaseScale(size, true);
         }
     }
 }

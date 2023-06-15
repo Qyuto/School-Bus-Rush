@@ -10,7 +10,7 @@ namespace UI.Shop
         [SerializeField] private ButtonSkinInteractor prefabButtonSkinInteractor;
         [SerializeField] private GridLayoutGroup passengerLayerShop;
         [SerializeField] private GridLayoutGroup schoolLayerShop;
-        
+
         private void Awake()
         {
             CreateButtons();
@@ -18,6 +18,7 @@ namespace UI.Shop
 
         private void CreateButtons()
         {
+            dataBase.SkinsData.Sort(Comparison);
             foreach (var skin in dataBase.SkinsData)
             {
                 Transform buttonParent = null;
@@ -31,10 +32,17 @@ namespace UI.Shop
                         break;
                 }
 
-                var newButton = Instantiate(prefabButtonSkinInteractor, Vector3.zero, prefabButtonSkinInteractor.transform.rotation,
+                var newButton = Instantiate(prefabButtonSkinInteractor, Vector3.zero,
+                    prefabButtonSkinInteractor.transform.rotation,
                     buttonParent);
                 newButton.InitButton(skin);
             }
+        }
+
+        private int Comparison(SkinInfo x, SkinInfo y)
+        {
+            if (x.cost > y.cost) return 1;
+            return -1;
         }
     }
 }

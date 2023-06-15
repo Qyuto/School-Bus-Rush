@@ -36,8 +36,6 @@ public class BusMovement : MonoBehaviour
     private void OnEnable()
     {
 #if Mobile
-        Application.targetFrameRate = 60;
-        QualitySettings.vSyncCount = 0;
         mobileMoveReference.action.Enable();
         EnhancedTouchSupport.Enable();
         Touch.onFingerDown += OnAnyFingerDown;

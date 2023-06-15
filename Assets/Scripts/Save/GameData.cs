@@ -13,7 +13,7 @@ namespace Save
         public GameData(string gameVersion)
         {
             totalPassenger = 0;
-            lastLevel = 0;
+            lastLevel = 1;
             skinData = new SkinData();
             lastGameVersion = gameVersion;
         }

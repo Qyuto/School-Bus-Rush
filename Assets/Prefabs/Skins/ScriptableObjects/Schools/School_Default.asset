@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   key: school_default
   cost: 0
-  iconSprite: {fileID: 0}
-  avatar: {fileID: 9000000, guid: de76d67d0ab88dc439b10b32370775ea, type: 3}
+  iconSprite: {fileID: 21300000, guid: b5720c8f1d5715d4983b8d25cc5c0679, type: 3}
   model: {fileID: 2944414690871278952, guid: a2cb4781d5fafc34db30f487568898d1, type: 3}
   type: 1
