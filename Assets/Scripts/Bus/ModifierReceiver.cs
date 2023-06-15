@@ -1,11 +1,13 @@
 ﻿using Modifier;
+using Passenger;
 using UnityEngine;
 
 namespace Bus
 {
-    public class ModifierReceiver : MonoBehaviour
+    public class ModifierReceiver : MonoBehaviour, IPassengerModifier
     {
         private PassengerCount _passengerCount;
+        private int _value;
 
         private void Awake()
         {
@@ -24,23 +26,28 @@ namespace Bus
 
         private void PassengerModifier(PassengerModifier modifier)
         {
+            _value = modifier.PassengerCount;
             switch (modifier.ModType)
             {
                 case PassengerModifierType.Increase:
-                    _passengerCount.onBusCollectPassenger?.Invoke(modifier.PassengerCount);
+                    _passengerCount.onBusCollectPassenger?.Invoke(this);
                     break;
                 case PassengerModifierType.Multiplier:
-                    int mValue = modifier.PassengerCount * _passengerCount.CurrentPassenger - _passengerCount.CurrentPassenger;
-                    _passengerCount.onBusCollectPassenger?.Invoke(mValue);
+                    _value = modifier.PassengerCount * _passengerCount.CurrentPassenger -
+                             _passengerCount.CurrentPassenger;
+                    _passengerCount.onBusCollectPassenger?.Invoke(this);
                     break;
                 case PassengerModifierType.Decrease:
-                    _passengerCount.onBusLostPassenger?.Invoke(modifier.PassengerCount);
+                    _passengerCount.onBusLostPassenger?.Invoke(this);
                     break;
                 case PassengerModifierType.Divid:
-                    int dValue = _passengerCount.CurrentPassenger - (_passengerCount.CurrentPassenger / modifier.PassengerCount);
-                    _passengerCount.onBusLostPassenger?.Invoke(dValue);
+                    _value = _passengerCount.CurrentPassenger - (_passengerCount.CurrentPassenger / _value);
+                    _passengerCount.onBusLostPassenger?.Invoke(this);
                     break;
             }
         }
+
+        public int GetPassengerCount() => _value;
+        public string GetModifierType() => "Receiver";
     }
 }

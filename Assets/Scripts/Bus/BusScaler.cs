@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Passenger;
+using UnityEngine;
 
 namespace Bus
 {
@@ -18,14 +19,14 @@ namespace Bus
             passengerCount.onBusLostPassenger.AddListener(ReduceSize);
         }
 
-        private void ReduceSize(int reduceValue)
+        private void ReduceSize(IPassengerModifier modifier)
         {
-            _sizeScaler.ReduceScale(((float)reduceValue * scaleFactor),false);
+            _sizeScaler.ReduceScale(((float)modifier.GetPassengerCount() * scaleFactor),false);
         }
 
-        private void IncreaseSize(int increaseValue)
+        private void IncreaseSize(IPassengerModifier modifier)
         {
-            _sizeScaler.IncreaseScale((float)increaseValue * scaleFactor,true);
+            _sizeScaler.IncreaseScale((float)modifier.GetPassengerCount() * scaleFactor,true);
         }
     }
 }

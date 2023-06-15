@@ -7,7 +7,7 @@ namespace Skins
     {
         [SerializeField] private bool immediateLoading = true;
         [SerializeField] private SkinType loadSkinType;
-        [SerializeField] private Transform currentModel;
+        private Transform _currentModel;
 
         private void Start()
         {
@@ -17,7 +17,7 @@ namespace Skins
         public void LoadSKin()
         {
             SkinInfo skinInfo;
-            if (currentModel != null) Destroy(currentModel.gameObject);
+            if (_currentModel != null) Destroy(_currentModel.gameObject);
 
             switch (loadSkinType)
             {
@@ -30,8 +30,8 @@ namespace Skins
                 default: throw new InvalidEnumArgumentException("Skin type not found");
             }
 
-            currentModel = skinInfo.ReplaceSkin(transform);
-            currentModel.localPosition = Vector3.zero;
+            _currentModel = skinInfo.ReplaceSkin(transform);
+            _currentModel.localPosition = Vector3.zero;
         }
     }
 }

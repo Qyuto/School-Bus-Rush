@@ -5,13 +5,12 @@ using DG.Tweening;
 
 namespace Passenger
 {
-    public class PassengerGroup : MonoBehaviour, IInteractable
+    public class PassengerGroup : MonoBehaviour, IInteractable, IPassengerModifier
     {
         [SerializeField] private float jumpOffset = 2f;
         [SerializeField] private int pickupCount;
         [SerializeField] private Transform[] peopleTransforms;
         [SerializeField] private TextMeshPro textPeopleCount;
-        public int PeopleCount => pickupCount;
 
         private void Awake()
         {
@@ -21,7 +20,7 @@ namespace Passenger
         public void Select(IBusInteractor interact)
         {
             PassengerCount passengerCount = interact.GetPassengerCountComponent();
-            passengerCount.onBusCollectPassenger?.Invoke(pickupCount);
+            passengerCount.onBusCollectPassenger?.Invoke(this);
 
             Transform interactTransform = interact.GetTransform();
             GetComponent<Collider>().enabled = false;
@@ -34,5 +33,8 @@ namespace Passenger
         {
             Destroy(gameObject);
         }
+
+        public int GetPassengerCount() => pickupCount;
+        public string GetModifierType() => "Passenger";
     }
 }

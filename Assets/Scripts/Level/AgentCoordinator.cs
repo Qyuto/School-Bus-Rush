@@ -8,7 +8,7 @@ using UnityEngine.AI;
 
 namespace Level
 {
-    public class AgentCoordinator : MonoBehaviour
+    public class AgentCoordinator : MonoBehaviour, IPassengerModifier
     {
         [SerializeField] private NavMeshAgent agentPrefab;
         [SerializeField] private Transform agentSpawnTransform;
@@ -25,9 +25,9 @@ namespace Level
             levelCompletion.onBusArrivedAtEnd.AddListener(() => StartCoroutine(EnableAgents()));
         }
 
-        private void CreateAgents(int size)
+        private void CreateAgents(IPassengerModifier modifier)
         {
-            for (int i = 0; i < size; i++)
+            for (int i = 0; i < modifier.GetPassengerCount(); i++)
             {
                 NavMeshAgent agent = Instantiate(agentPrefab, agentSpawnTransform.position,
                     agentSpawnTransform.rotation);
@@ -38,8 +38,9 @@ namespace Level
             }
         }
 
-        private void DestroyAgents(int size)
+        private void DestroyAgents(IPassengerModifier modifier)
         {
+            int size = modifier.GetPassengerCount();
             if (size > _agentPool.Count)
             {
                 Debug.LogError("The number of deleted passengers is greater than the current one");
@@ -60,7 +61,7 @@ namespace Level
                 agent.meshAgent.transform.position = agentSpawnTransform.position;
                 agent.meshAgent.gameObject.SetActive(true);
                 agent.StartAgent(_agentDestination);
-                passengerCount.onBusLostPassenger?.Invoke(1);
+                passengerCount.onBusLostPassenger?.Invoke(this);
             }
         }
 
@@ -68,5 +69,9 @@ namespace Level
         {
             _agentDestination = target;
         }
+
+        public int GetPassengerCount() => 1;
+
+        public string GetModifierType() => "AgentCoordinator";
     }
 }

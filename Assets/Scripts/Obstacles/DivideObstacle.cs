@@ -1,23 +1,28 @@
 ﻿using Bus;
+using Passenger;
 using UnityEngine;
 
 namespace Obstacles
 {
-    public class DivideObstacle : Obstacle
+    public class DivideObstacle : Obstacle, IPassengerModifier
     {
-        [SerializeField] private float dividePassenger;
-        public float DivideValue => dividePassenger;
+        [SerializeField] private int dividePassenger;
 
         public override void Select(IBusInteractor interactor)
         {
             PassengerCount passengerCount = interactor.GetPassengerCountComponent();
-            float divide = passengerCount.CurrentPassenger / dividePassenger;
+            int divide = passengerCount.CurrentPassenger / dividePassenger;
             if (divide < 1) divide = passengerCount.CurrentPassenger;
-            passengerCount.onBusLostPassenger?.Invoke((int)divide);
+
+            dividePassenger = divide;
+            passengerCount.onBusLostPassenger?.Invoke(this);
 
             if (useVFX) Instantiate(vfxExplosion, transform.position, Quaternion.identity).Play();
             onInteractSelect?.Invoke(interactor);
             Destroy(gameObject);
         }
+
+        public int GetPassengerCount() => dividePassenger;
+        public string GetModifierType() => "DivideObstacle";
     }
 }

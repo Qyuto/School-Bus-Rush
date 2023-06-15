@@ -9,10 +9,11 @@ namespace Skins
 
         public override Transform ReplaceSkin(Transform parent)
         {
-            GameObject newModel = Instantiate(model, parent.transform.position, parent.transform.rotation,
-                parent.transform);
-            parent.GetComponent<Animator>().avatar = avatar;
-            return newModel.transform;
+            Transform newModel = base.ReplaceSkin(parent);
+            Animator animator = parent.GetComponent<Animator>();
+
+            if (animator.avatar != avatar) animator.avatar = avatar;
+            return newModel;
         }
     }
 }

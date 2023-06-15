@@ -1,12 +1,13 @@
 ﻿using Bus;
 using DG.Tweening;
+using Passenger;
 using TMPro;
 using UnityEngine;
 
 namespace Obstacles
 {
     [RequireComponent(typeof(Obstacle))]
-    public class GateObstacle : MonoBehaviour
+    public class GateObstacle : MonoBehaviour, IPassengerModifier
     {
         [SerializeField] private int passengerThreshold;
         [SerializeField] private float durationTime;
@@ -36,11 +37,15 @@ namespace Obstacles
                 PassengerCount passengerCount = bus.GetComponentInParent<PassengerCount>();
                 if (passengerCount == null) return;
                 if (passengerThreshold <= passengerCount.CurrentPassenger)
-                    passengerCount.onBusLostPassenger?.Invoke(passengerThreshold);
+                    passengerCount.onBusLostPassenger?.Invoke(this);
                 else return;
             }
 
             movableTransform.transform.DOMove(_targetPosition, durationTime);
         }
+
+        public int GetPassengerCount() => passengerThreshold;
+
+        public string GetModifierType() => "GateObstacle";
     }
 }
