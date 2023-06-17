@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Passenger_Zombie
   m_EditorClassIdentifier: 
   key: passenger_zombie
-  cost: 1000
+  cost: 500
   iconSprite: {fileID: 21300000, guid: 49181ac0efe868441ac66302f45543f9, type: 3}
   model: {fileID: 856601670117699726, guid: b14953694d54eea4eb66f453e525024c, type: 3}
   type: 0

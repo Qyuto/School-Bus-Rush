@@ -79,12 +79,12 @@ namespace Level.School
             _schoolHouseUI.UpdatePassengerText(_currentPassengerRateInSchool);
             _schoolHouseUI.UpdateRateSlider(_currentPassengerInSchool);
             sizeScaler.IncreaseScale((Vector3)Vector2.one / 500f, true);
-            destroyRayPosition = new Vector3(destroyRayPosition.x,  -transform.position.y, destroyRayPosition.z);
+            destroyRayPosition = new Vector3(destroyRayPosition.x, -transform.position.y, destroyRayPosition.z);
         }
 
         private void DestroyOverlappedCollider(int index)
         {
-            Destroy(_overlappedCollider[index].gameObject);
+            _overlappedCollider[index].gameObject.SetActive(false);
         }
 
         private void GetComponents(GameObject bus)
@@ -101,6 +101,7 @@ namespace Level.School
             agentCoordinator.SetAgentDestination(transform.position + destroyRayPosition);
             _beforeUnloadingPassengerCount = _passengerCount.CurrentPassenger;
             _levelCompletion.onBusArrivedAtEnd?.Invoke();
+            Destroy(busTrigger.gameObject);
         }
 
         private void OnDrawGizmos()

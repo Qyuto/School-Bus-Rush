@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1510013acdc2411684f79fa59bac3fd5, type: 3}
+  m_Name: Passenger_Humanoid
+  m_EditorClassIdentifier: 
+  key: passenger_humanoid
+  cost: 750
+  iconSprite: {fileID: 21300000, guid: 5f71930c86f99f44983b666fc08fe263, type: 3}
+  model: {fileID: 3733192570276357795, guid: 64afc01b4e7549b4898ddab877a0bd88, type: 3}
+  type: 0
+  avatar: {fileID: 9000000, guid: 31f6676788424824f81d41d250333da1, type: 3}

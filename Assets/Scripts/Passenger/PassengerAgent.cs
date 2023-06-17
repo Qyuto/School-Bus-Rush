@@ -5,37 +5,53 @@ using UnityEngine.AI;
 
 namespace Passenger
 {
-    public class PassengerAgent
+    public class PassengerAgent : MonoBehaviour
     {
-        public Animator animator { get; set; }
-        public NavMeshAgent meshAgent { get; set; }
+        [SerializeField] private Animator animator;
+        [SerializeField] private NavMeshAgent meshAgent;
+        [SerializeField] private LoadMeshSkin meshSkin;
 
-        private LoadMeshSkin _meshSkin;
+        private Action<PassengerAgent> _killAgent;
 
-        public PassengerAgent(Animator animator, NavMeshAgent navMeshAgent, LoadMeshSkin meshSkin)
+        private void Reset()
         {
-            this.animator = animator;
-            meshAgent = navMeshAgent;
-            _meshSkin = meshSkin;
+            animator = GetComponent<Animator>();
+            meshAgent = GetComponent<NavMeshAgent>();
+            meshSkin = GetComponent<LoadMeshSkin>();
+        }
+
+        public void InitAgent(Action<PassengerAgent> actionOnKillAgent)
+        {
+            _killAgent = actionOnKillAgent;
+            LoadAgentSkin();
         }
 
         public void StartAgent(Vector3 destination)
         {
-            LoadAgentSkin();
             SetMoveAnimation();
             meshAgent.SetDestination(destination);
         }
 
+        public void KillAgent()
+        {
+            _killAgent?.Invoke(this);
+        }
+
         private void LoadAgentSkin()
         {
-            if (_meshSkin == null) return;
-            _meshSkin.LoadSKin();
+            if (meshSkin == null) return;
+            meshSkin.LoadSKin();
         }
 
         private void SetMoveAnimation()
         {
             if (animator == null) return;
             animator.SetTrigger("Walk");
+        }
+
+        private void OnDisable()
+        {
+            KillAgent();
         }
     }
 }

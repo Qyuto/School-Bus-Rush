@@ -6357,7 +6357,7 @@ Transform:
   - {fileID: 3367185220473527948}
   - {fileID: 3367185219911913218}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4800621420169305973
 MonoBehaviour:
@@ -6770,7 +6770,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f381b23065148b7843573f32fb8a6ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scaleTransform: {fileID: 3367185220473527948}
   scaleFactor: 0.001
   passengerCount: {fileID: 3367185220473527944}
 --- !u!114 &4246254796418092150
@@ -6834,7 +6833,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77331185fadd472fac20e7a7465fb776, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agentPrefab: {fileID: 6477152859102444475, guid: a4c8557bb0ec84c4d9ef07b7745b67f5, type: 3}
+  maxPoolSize: 50
+  agentPrefab: {fileID: 1234044400595743264, guid: a4c8557bb0ec84c4d9ef07b7745b67f5, type: 3}
   agentSpawnTransform: {fileID: 157292949}
   passengerCount: {fileID: 3367185220473527944}
   levelCompletion: {fileID: 1167340494}

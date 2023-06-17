@@ -1,67 +1,97 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using Bus;
-using Skins;
 using Passenger;
 using UnityEngine;
-using UnityEngine.AI;
+using UnityEngine.Pool;
 
 namespace Level
 {
     public class AgentCoordinator : MonoBehaviour, IPassengerModifier
     {
-        [SerializeField] private NavMeshAgent agentPrefab;
+        [SerializeField] private int maxPoolSize;
+        [SerializeField] private PassengerAgent agentPrefab;
         [SerializeField] private Transform agentSpawnTransform;
         [SerializeField] private PassengerCount passengerCount;
         [SerializeField] private BusLevelCompletion levelCompletion;
 
-        private readonly List<PassengerAgent> _agentPool = new List<PassengerAgent>(1000);
+        private ObjectPool<PassengerAgent> _agentObjectPool;
+        private int _passengerSpawnCount;
         private Vector3 _agentDestination;
 
         private void Awake()
         {
+            _agentObjectPool = new ObjectPool<PassengerAgent>(CreateAgentFunc, ActionOnGetAgent, ActionOnReleaseAgent,
+                ActionOnDestroyAgent);
             passengerCount.onBusLostPassenger.AddListener(DestroyAgents);
             passengerCount.onBusCollectPassenger.AddListener(CreateAgents);
             levelCompletion.onBusArrivedAtEnd.AddListener(() => StartCoroutine(EnableAgents()));
         }
 
+        private void ActionOnKillAgent(PassengerAgent obj)
+        {
+            _agentObjectPool.Release(obj);
+        }
+
+        private void ActionOnDestroyAgent(PassengerAgent obj)
+        {
+            Destroy(obj.gameObject);
+        }
+
+        private void ActionOnReleaseAgent(PassengerAgent obj)
+        {
+            obj.gameObject.SetActive(false);
+        }
+
+        private void ActionOnGetAgent(PassengerAgent obj)
+        {
+            obj.transform.position = agentSpawnTransform.position;
+            obj.gameObject.SetActive(true);
+            obj.StartAgent(_agentDestination);
+        }
+
+        private PassengerAgent CreateAgentFunc()
+        {
+            PassengerAgent agent = Instantiate(agentPrefab, agentSpawnTransform.position, agentSpawnTransform.rotation);
+            agent.InitAgent(ActionOnKillAgent);
+            return agent;
+        }
+
         private void CreateAgents(IPassengerModifier modifier)
         {
-            for (int i = 0; i < modifier.GetPassengerCount(); i++)
-            {
-                NavMeshAgent agent = Instantiate(agentPrefab, agentSpawnTransform.position,
-                    agentSpawnTransform.rotation);
-
-                agent.gameObject.SetActive(false);
-                _agentPool.Add(new PassengerAgent(agent.GetComponent<Animator>(), agent,
-                    agent.GetComponent<LoadMeshSkin>()));
-            }
+            _passengerSpawnCount += modifier.GetPassengerCount();
         }
 
         private void DestroyAgents(IPassengerModifier modifier)
         {
             int size = modifier.GetPassengerCount();
-            if (size > _agentPool.Count)
+            if (size > _passengerSpawnCount)
             {
                 Debug.LogError("The number of deleted passengers is greater than the current one");
                 return;
             }
 
-            for (int i = 0; i < size; i++) Destroy(_agentPool[i].meshAgent.gameObject);
-            _agentPool.RemoveRange(0, size);
+            _passengerSpawnCount -= size;
         }
 
         private IEnumerator EnableAgents()
         {
             passengerCount.onBusLostPassenger.RemoveListener(DestroyAgents);
-            foreach (var agent in _agentPool)
+            while (_passengerSpawnCount != 0)
             {
-                yield return new WaitForSeconds(Time.fixedDeltaTime);
+                int spawnSize = 0;
+                if (_agentObjectPool.CountAll == 0) spawnSize = maxPoolSize;
+                else if (_agentObjectPool.CountActive == maxPoolSize) spawnSize = 0;
+                else spawnSize = _agentObjectPool.CountInactive;
 
-                agent.meshAgent.transform.position = agentSpawnTransform.position;
-                agent.meshAgent.gameObject.SetActive(true);
-                agent.StartAgent(_agentDestination);
-                passengerCount.onBusLostPassenger?.Invoke(this);
+                if (_agentObjectPool.CountAll > maxPoolSize)
+                    Debug.LogError($"Override agent pool limit: {_agentObjectPool.CountAll}");
+                for (int i = 0; i < spawnSize && _passengerSpawnCount != 0; i++, _passengerSpawnCount--)
+                {
+                    _agentObjectPool.Get();
+                    passengerCount.onBusLostPassenger?.Invoke(this);
+                    yield return new WaitForFixedUpdate();
+                }
+                yield return null;
             }
         }
 

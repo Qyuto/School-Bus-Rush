@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: -3827401431421233474}
   - component: {fileID: 7795647069470741204}
   - component: {fileID: 7330326869964495767}
+  - component: {fileID: 1234044400595743264}
   m_Layer: 6
   m_Name: PassengerAgent
   m_TagString: Untagged
@@ -113,3 +114,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   immediateLoading: 0
   loadSkinType: 0
+--- !u!114 &1234044400595743264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5082308075520480369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f309f231f0441e88e2e28a91b7ce565, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 7795647069470741204}
+  meshAgent: {fileID: 6477152859102444475}
+  meshSkin: {fileID: 7330326869964495767}

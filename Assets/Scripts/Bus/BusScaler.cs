@@ -6,32 +6,47 @@ namespace Bus
     [RequireComponent(typeof(TransformSizeScaler))]
     public class BusScaler : MonoBehaviour
     {
-        [SerializeField] private Transform scaleTransform;
         [Range(0.001f, 0.9f), SerializeField] private float scaleFactor;
         [SerializeField] private PassengerCount passengerCount;
 
+        private float _maxScaleAmount = 0.5f;
+        private float _minScaleAmount = 0.5f;
         private TransformSizeScaler _sizeScaler;
 
         private void Awake()
         {
             _sizeScaler = GetComponent<TransformSizeScaler>();
-            passengerCount.onBusCollectPassenger.AddListener(IncreaseSize);
-            passengerCount.onBusLostPassenger.AddListener(ReduceSize);
+            passengerCount.onBusCollectPassenger.AddListener(IncreaseScale);
+            passengerCount.onBusLostPassenger.AddListener(ReduceScale);
         }
 
-        private void ReduceSize(IPassengerModifier modifier)
+        private void ReduceScale(IPassengerModifier modifier)
         {
-            _sizeScaler.ReduceScale(((float)modifier.GetPassengerCount() * scaleFactor), false);
+            float size = modifier.GetPassengerCount() * scaleFactor;
+            ValidateScaleValue(ref size, ref _minScaleAmount);
+            if (size > 0) _sizeScaler.ReduceScale(size, false);
+            _maxScaleAmount += size;
+            if (_maxScaleAmount > 0.5) _maxScaleAmount = 0.5f;
         }
 
-        private void IncreaseSize(IPassengerModifier modifier)
+        private void IncreaseScale(IPassengerModifier modifier)
         {
-            if (transform.localScale.y > 1.5f) return;
-            float size = (float)modifier.GetPassengerCount() * scaleFactor;
-            Vector3 vectorSize = new Vector3(size, size, size) + transform.localScale;
-            if (vectorSize.y > 1.5f) size = vectorSize.y - 1.5f;
+            float size = modifier.GetPassengerCount() * scaleFactor;
+            ValidateScaleValue(ref size, ref _maxScaleAmount);
+            if (size > 0) _sizeScaler.IncreaseScale(size, true);
+            _minScaleAmount += size;
+            if (_minScaleAmount > 0.5) _minScaleAmount = 0.5f;
+        }
 
-            _sizeScaler.IncreaseScale(size, true);
+        private void ValidateScaleValue(ref float value, ref float amount)
+        {
+            amount -= value;
+            if (amount < 0)
+            {
+                amount += value;
+                value = amount;
+                amount -= value;
+            }
         }
     }
 }
