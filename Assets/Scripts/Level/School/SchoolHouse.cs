@@ -5,13 +5,13 @@ namespace Level.School
 {
     public class SchoolHouse : MonoBehaviour
     {
-        [SerializeField] private TransformSizeScaler sizeScaler;
         [SerializeField] private int minPassengerCount;
         [SerializeField] private BusTrigger busTrigger;
         [SerializeField] private LayerMask overlappedLayerMask;
         [SerializeField] private Vector3 destroyRayPosition;
         [SerializeField] private float destroyRadius;
 
+        private TransformSizeScaler _sizeScaler;
         private int _currentPassengerInSchool;
         private int _currentPassengerRateInSchool;
         private int _beforeUnloadingPassengerCount;
@@ -24,6 +24,7 @@ namespace Level.School
 
         private void Awake()
         {
+            _sizeScaler = new TransformSizeScaler(transform);
             _schoolHouseUI = GetComponent<SchoolHouseUI>();
             busTrigger.onTriggerEnter.AddListener(GetComponents);
         }
@@ -78,7 +79,7 @@ namespace Level.School
 
             _schoolHouseUI.UpdatePassengerText(_currentPassengerRateInSchool);
             _schoolHouseUI.UpdateRateSlider(_currentPassengerInSchool);
-            sizeScaler.IncreaseScale((Vector3)Vector2.one / 500f, true);
+            _sizeScaler.IncreaseScale((Vector3)Vector2.one / 500f, true);
             destroyRayPosition = new Vector3(destroyRayPosition.x, -transform.position.y, destroyRayPosition.z);
         }
 
@@ -94,7 +95,7 @@ namespace Level.School
 
             _passengerCount = busInteractor.GetPassengerCountComponent();
             _levelCompletion = busInteractor.GetBusLevelCompletion();
-            _ratePassenger = _levelCompletion.GetComponent<BusRatePassenger>();
+            _ratePassenger = busInteractor.GetBusRatePassenger();
             AgentCoordinator agentCoordinator = _passengerCount.GetComponent<AgentCoordinator>();
 
             _schoolHouseUI.Init(_ratePassenger);

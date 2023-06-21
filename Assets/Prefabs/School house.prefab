@@ -636,7 +636,6 @@ GameObject:
   - component: {fileID: 6816171976629028196}
   - component: {fileID: 6816171976629028206}
   - component: {fileID: 2891696812186490790}
-  - component: {fileID: 3949308542507566507}
   m_Layer: 0
   m_Name: School house
   m_TagString: Untagged
@@ -675,7 +674,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 656773bf2c18482fba297ef658b50474, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sizeScaler: {fileID: 3949308542507566507}
   minPassengerCount: 10
   busTrigger: {fileID: 6816171978385919619}
   overlappedLayerMask:
@@ -764,18 +762,6 @@ MonoBehaviour:
     textColor:
       serializedVersion: 2
       rgba: 4294967295
---- !u!114 &3949308542507566507
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6816171976629028198}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33bbbde08b7e4eb1ac89ce201dcd2f1a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &6816171977379960300
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,12 +12,13 @@ namespace Bus
         private ModifierReceiver _modReceiver;
         private BusLevelCompletion _levelCompletion;
         private BusRatePassenger _ratePassenger;
-        
+
         private void Awake()
         {
             _levelCompletion = GetComponent<BusLevelCompletion>();
             _passengerCount = GetComponent<PassengerCount>();
-            _modReceiver = GetComponent<ModifierReceiver>();
+            _ratePassenger = new BusRatePassenger(10);
+            _modReceiver = new ModifierReceiver(_passengerCount);
             BusLevelCompletion levelCompletion = GetComponent<BusLevelCompletion>();
             levelCompletion.onBusArrivedAtEnd.AddListener(DisableComponent);
         }

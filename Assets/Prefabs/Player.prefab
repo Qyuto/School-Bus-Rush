@@ -6357,7 +6357,7 @@ Transform:
   - {fileID: 3367185220473527948}
   - {fileID: 3367185219911913218}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4800621420169305973
 MonoBehaviour:
@@ -6682,13 +6682,10 @@ GameObject:
   - component: {fileID: 3367185220473527944}
   - component: {fileID: 849050574}
   - component: {fileID: 4246254796418092150}
-  - component: {fileID: 6869904124901243842}
   - component: {fileID: 1167340494}
   - component: {fileID: 8297850272765211626}
-  - component: {fileID: 3520444342732633116}
   - component: {fileID: 2011285528183238595}
   - component: {fileID: 3709553079729789077}
-  - component: {fileID: 5617527157537246276}
   m_Layer: 0
   m_Name: PlayerBus
   m_TagString: Player
@@ -6788,18 +6785,6 @@ MonoBehaviour:
   interactableMask:
     serializedVersion: 2
     m_Bits: 448
---- !u!114 &6869904124901243842
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3367185220473527949}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 295f5c61b1404475974ebde51eaaba6c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1167340494
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6838,19 +6823,6 @@ MonoBehaviour:
   agentSpawnTransform: {fileID: 157292949}
   passengerCount: {fileID: 3367185220473527944}
   levelCompletion: {fileID: 1167340494}
---- !u!114 &3520444342732633116
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3367185220473527949}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 619cdcbaf0e6413686551f541462136b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rateIncreaseThreshold: 10
 --- !u!54 &2011285528183238595
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6899,18 +6871,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.82, y: 2.35, z: 12.97}
   m_Center: {x: 0, y: 0.5, z: -0.9}
---- !u!114 &5617527157537246276
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3367185220473527949}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33bbbde08b7e4eb1ac89ce201dcd2f1a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3367185220519749029
 GameObject:
   m_ObjectHideFlags: 0
@@ -7716,10 +7676,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelCompletion: {fileID: 1167340494}
-  deltaMove: 10
+  passengerCount: {fileID: 3367185220473527944}
+  duration: 0.7
   cameraTarget: {fileID: 3367185220473527948}
   viewCameraOffset: {x: 0, y: 0, z: -30}
-  finishLevelPosition: {x: 0, y: 0, z: 20}
+  dischargePosition: {x: 0, y: 0, z: 20}
 --- !u!1 &3367185221636607817
 GameObject:
   m_ObjectHideFlags: 0

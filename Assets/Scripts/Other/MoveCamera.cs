@@ -1,45 +1,68 @@
+using System.Collections;
 using Bus;
-using DG.Tweening;
+using Passenger;
 using UnityEngine;
 
 public class MoveCamera : MonoBehaviour
 {
     [SerializeField] private BusLevelCompletion levelCompletion;
-    [SerializeField] private float deltaMove;
+    [SerializeField] private PassengerCount passengerCount;
+
+    [SerializeField] private float duration;
     [SerializeField] private Transform cameraTarget;
     [SerializeField] private Vector3 viewCameraOffset;
-    [SerializeField] private Vector3 finishLevelPosition;
+    [SerializeField] private Vector3 dischargePosition;
+
     private Camera _camera;
-    
+    private Vector3 _dischargeTarget;
+
+    private delegate void AfterMoveRef(ref Vector3 target);
+
     private void Awake()
     {
         _camera = Camera.main;
-        levelCompletion.onBusArrivedAtEnd.AddListener(MoveCameraToSecondPos);
+        levelCompletion.onBusArrivedAtEnd.AddListener(MoveCameraToDischarge);
+        passengerCount.onBusLostPassenger.AddListener(AddDischargeOffset);
+
+        Vector3 target = new Vector3(_camera.transform.position.x, _camera.transform.position.y, cameraTarget.position.z) + viewCameraOffset;
+        StartCoroutine(MoveToTarget(target, duration, UpdateCameraTarget));
     }
 
-    private void MoveCameraToSecondPos()
+    private void AddDischargeOffset(IPassengerModifier modifier)
+    {
+        _dischargeTarget += (Vector3.up - Vector3.forward) * 0.05f;
+    }
+
+    private void MoveCameraToDischarge()
     {
         StopAllCoroutines();
-        _camera.transform.DOLocalMove(transform.position + finishLevelPosition, 1);
+        _dischargeTarget = _camera.transform.position + dischargePosition;
+        StartCoroutine(MoveToTarget(_dischargeTarget, duration * Time.fixedDeltaTime, UpdateDischargeTarget));
     }
 
-    private void FixedUpdate()
+    private void UpdateDischargeTarget(ref Vector3 target)
     {
-        if(!levelCompletion.isArrived)
-            MoveToMainTarget();
+        target = _dischargeTarget;
     }
 
-    private void MoveToMainTarget()
+    private void UpdateCameraTarget(ref Vector3 target)
     {
-        _camera.transform.position = Vector3.Lerp(_camera.transform.position,
-            new Vector3(_camera.transform.position.x, _camera.transform.position.y, cameraTarget.position.z) + viewCameraOffset,
-            deltaMove * Time.deltaTime);
+        target = new Vector3(_camera.transform.position.x, _camera.transform.position.y, cameraTarget.position.z) + viewCameraOffset;
     }
-    
-    private void OnDrawGizmosSelected()
+
+    private IEnumerator MoveToTarget(Vector3 target, float delta, AfterMoveRef afterMoveAction)
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(new Vector3(transform.position.x, transform.position.y, cameraTarget.position.z) + viewCameraOffset,1f);
-        Gizmos.DrawWireSphere(transform.position + finishLevelPosition,1f);
+        while (enabled)
+        {
+            _camera.transform.localPosition = Vector3.Lerp(_camera.transform.localPosition, target, delta);
+            afterMoveAction?.Invoke(ref target);
+            yield return new WaitForFixedUpdate();
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(_dischargeTarget, 1f);
     }
 }

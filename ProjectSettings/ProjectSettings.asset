@@ -135,7 +135,7 @@ PlayerSettings:
   vulkanEnableLateAcquireNextImage: 0
   vulkanEnableCommandBufferRecycling: 1
   loadStoreDebugModeEnabled: 0
-  bundleVersion: 0.1.6
+  bundleVersion: 0.1.7
   preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -157,7 +157,7 @@ PlayerSettings:
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
     Android: com.AllureDev.SchoolBusRush
-    Standalone: com.DefaultCompany.School-Bus-Rush
+    Standalone: com.AllureDev.School-Bus-Rush
   buildNumber:
     Standalone: 0
     iPhone: 0

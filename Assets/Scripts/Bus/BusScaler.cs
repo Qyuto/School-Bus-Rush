@@ -3,7 +3,6 @@ using UnityEngine;
 
 namespace Bus
 {
-    [RequireComponent(typeof(TransformSizeScaler))]
     public class BusScaler : MonoBehaviour
     {
         [Range(0.001f, 0.9f), SerializeField] private float scaleFactor;
@@ -15,7 +14,7 @@ namespace Bus
 
         private void Awake()
         {
-            _sizeScaler = GetComponent<TransformSizeScaler>();
+            _sizeScaler = new TransformSizeScaler(transform);
             passengerCount.onBusCollectPassenger.AddListener(IncreaseScale);
             passengerCount.onBusLostPassenger.AddListener(ReduceScale);
         }

@@ -4,14 +4,14 @@ using UnityEngine;
 
 namespace Bus
 {
-    public class ModifierReceiver : MonoBehaviour, IPassengerModifier
+    public class ModifierReceiver : IPassengerModifier
     {
-        private PassengerCount _passengerCount;
+        private readonly PassengerCount _passengerCount;
         private int _value;
 
-        private void Awake()
+        public ModifierReceiver(PassengerCount passengerCount)
         {
-            _passengerCount = GetComponent<PassengerCount>();
+            _passengerCount = passengerCount;
         }
 
         public void ReceiveModifier(BusModifier modifier)

@@ -1,24 +1,26 @@
 ﻿using System;
-using UnityEngine;
 
 namespace Bus
 {
-    public class BusRatePassenger : MonoBehaviour
+    public class BusRatePassenger
     {
-        [SerializeField] private int rateIncreaseThreshold;
-
+        private int _rateIncreaseThreshold;
         private int _currentRate = 1;
         public int Rate => _currentRate;
+        public Action<int, int, int> OnRateChanged;
 
-        public Action<int, int, int> onRateChanged;
+        public BusRatePassenger(int rateIncreaseThreshold)
+        {
+            _rateIncreaseThreshold = rateIncreaseThreshold;
+        }
 
         public bool TryAddRate(int size)
         {
-            if (rateIncreaseThreshold > size) return false;
-            rateIncreaseThreshold *= 2;
+            if (_rateIncreaseThreshold > size) return false;
+            _rateIncreaseThreshold *= 2;
             _currentRate++;
             if (_currentRate >= 10) _currentRate = 10;
-            onRateChanged?.Invoke(rateIncreaseThreshold / 2, rateIncreaseThreshold, _currentRate);
+            OnRateChanged?.Invoke(_rateIncreaseThreshold / 2, _rateIncreaseThreshold, _currentRate);
             return true;
         }
     }

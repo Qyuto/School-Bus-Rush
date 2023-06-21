@@ -20,7 +20,7 @@ namespace Level.School
         public void Init(BusRatePassenger ratePassenger)
         {
             _ratePassenger = ratePassenger;
-            _ratePassenger.onRateChanged += UpdateRateInfoUI;
+            _ratePassenger.OnRateChanged += UpdateRateInfoUI;
         }
 
         private void UpdateRateInfoUI(int prevRateThreshold, int nextRateThreshold, int currentRate)
@@ -58,7 +58,7 @@ namespace Level.School
 
         private void OnDestroy()
         {
-            if (_ratePassenger != null) _ratePassenger.onRateChanged -= UpdateRateInfoUI;
+            if (_ratePassenger != null) _ratePassenger.OnRateChanged -= UpdateRateInfoUI;
         }
     }
 
