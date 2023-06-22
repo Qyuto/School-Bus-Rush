@@ -1,4 +1,4 @@
-﻿using System;
+﻿using Ads;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -14,6 +14,13 @@ namespace Bus
         private void Awake()
         {
             onBusArrivedAtEnd.AddListener(() => isArrived = true);
+        }
+
+        private void Start()
+        {
+            onBusArrivedAtEnd.AddListener(AdsToggle.Instance.LoadBanner);
+            onBusLevelComplete.AddListener(AdsToggle.Instance.LoadInterstitial);
+            onBusLevelFailComplete.AddListener(AdsToggle.Instance.LoadInterstitial);
         }
 
         private void OnDestroy()
