@@ -28,13 +28,11 @@ namespace Ads
 
         private void ShowBanner()
         {
-            Debug.Log("Show banner");
             Advertisement.Banner.Show(androidBanner);
         }
 
         public void OnUnityAdsAdLoaded(string placementId)
         {
-            Debug.Log(placementId);
             Advertisement.Show(placementId, this);
         }
 

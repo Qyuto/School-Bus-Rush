@@ -17,6 +17,7 @@ namespace Obstacles
             if (useVFX) Instantiate(vfxExplosion, transform.position, Quaternion.identity).Play();
             levelCompletion.onBusLevelFailComplete?.Invoke();
             onInteractSelect?.Invoke(interactor);
+            Destroy(this);
         }
     }
 }
