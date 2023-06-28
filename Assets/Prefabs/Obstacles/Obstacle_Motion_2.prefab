@@ -14,10 +14,10 @@ GameObject:
   - component: {fileID: 31826885293752784}
   - component: {fileID: 6785195005152606643}
   - component: {fileID: 6163970414384495183}
-  - component: {fileID: 37830104}
-  - component: {fileID: 8499604399625735131}
+  - component: {fileID: -4097444175244783484}
+  - component: {fileID: 4483497013877373038}
   m_Layer: 7
-  m_Name: Motion Obstacles_2
+  m_Name: Obstacle_Motion_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -354,7 +354,7 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
---- !u!114 &37830104
+--- !u!114 &-4097444175244783484
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -363,19 +363,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 8444313582246220571}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba908f495e3e48fe82d122854338837a, type: 3}
+  m_Script: {fileID: 11500000, guid: 42e7a3fb2c234dd39e7ee13d05ea3c32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  useVFX: 1
-  vfxExplosion: {fileID: 4921002995624489490, guid: d0480d8b9052b7a42bf69eb964dd38e1, type: 3}
-  dividePassenger: 2
   randomFactor: 0
   firstVectorMoveDirection: {x: -12, y: 0, z: 0}
   secondVectorMoveDirection: {x: 12, y: 0, z: 0}
   moveSpeed: 5
   rotation: 0
   speedRotation: 0
---- !u!114 &8499604399625735131
+--- !u!114 &4483497013877373038
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -384,7 +381,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 8444313582246220571}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1cacf415122b4fcaa2e02c33cc13c18b, type: 3}
+  m_Script: {fileID: 11500000, guid: 9126caab23284a939b0e81f8a415dc88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroyGameObject: 1
+  useVFX: 1
+  vfxExplosion: {fileID: 4921002995624489490, guid: d0480d8b9052b7a42bf69eb964dd38e1, type: 3}
+  dividePassenger: 2

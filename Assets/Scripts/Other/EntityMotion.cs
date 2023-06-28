@@ -1,11 +1,13 @@
-﻿using DG.Tweening;
+﻿using System;
+using DG.Tweening;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
-namespace Obstacles
+namespace Other
 {
-    public class MotionObstacle : DivideObstacle
+    public class EntityMotion : MonoBehaviour
     {
-        [Range(1, 10), SerializeField] private float randomFactor;
+        [Range(0, 10), SerializeField] private float randomFactor;
         [SerializeField] private Vector3 firstVectorMoveDirection;
         [SerializeField] private Vector3 secondVectorMoveDirection;
         [SerializeField] private float moveSpeed;
