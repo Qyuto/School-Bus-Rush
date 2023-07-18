@@ -41,6 +41,7 @@ namespace Obstacles
                 else return;
             }
 
+            busTrigger.enabled = false;
             movableTransform.transform.DOMove(_targetPosition, durationTime);
         }
 

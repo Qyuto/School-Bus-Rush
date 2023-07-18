@@ -29,6 +29,8 @@ public class FinishLevelUI : MonoBehaviour
     {
         looseGroup.transform.parent.gameObject.SetActive(true);
         looseGroup.gameObject.SetActive(true);
+        nextLevelButton.interactable = false;
+        nextLevelButton.GetComponentInChildren<TextMeshProUGUI>().fontStyle = FontStyles.Strikethrough | FontStyles.Bold;
         passengerCountText.text = $"Total passengers: {passengerCount.CurrentPassenger.ToString()}";
     }
 
@@ -48,6 +50,4 @@ public class FinishLevelUI : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
-
-
 }
