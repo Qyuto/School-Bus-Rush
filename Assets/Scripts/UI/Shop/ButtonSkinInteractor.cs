@@ -23,7 +23,7 @@ namespace UI.Shop
 
             if (info.iconSprite != null) frontImage.sprite = info.iconSprite;
             _isPurchased = _buyHandler.CheckSkinPurchased(info);
-            textCost.text = _isPurchased ? "Select" : info.cost.ToString();
+            textCost.text = _isPurchased ? "+" : info.cost.ToString();
             _skinInfo = info;
         }
 
@@ -34,7 +34,7 @@ namespace UI.Shop
             {
                 if (!_buyHandler.AddNewSkin(_skinInfo)) return;
                 _isPurchased = true;
-                textCost.text = "Select";
+                textCost.text = "+";
             }
             else
                 _buyHandler.SelectCurrentSkin(_skinInfo);

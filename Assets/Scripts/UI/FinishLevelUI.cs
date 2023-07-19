@@ -2,14 +2,13 @@
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Bus;
-using TMPro;
 
 public class FinishLevelUI : MonoBehaviour
 {
     [SerializeField] private CanvasGroup finishGroup;
     [SerializeField] private CanvasGroup looseGroup;
 
-    [SerializeField] private TextMeshProUGUI passengerCountText;
+    [SerializeField] private Text passengerCountText;
     [SerializeField] private BusLevelCompletion busLevelCompletion;
     [SerializeField] private PassengerCount passengerCount;
     [Header("Buttons")] [SerializeField] private Button nextLevelButton;
@@ -30,8 +29,8 @@ public class FinishLevelUI : MonoBehaviour
         looseGroup.transform.parent.gameObject.SetActive(true);
         looseGroup.gameObject.SetActive(true);
         nextLevelButton.interactable = false;
-        nextLevelButton.GetComponentInChildren<TextMeshProUGUI>().fontStyle = FontStyles.Strikethrough | FontStyles.Bold;
-        passengerCountText.text = $"Total passengers: {passengerCount.CurrentPassenger.ToString()}";
+        Text text = nextLevelButton.GetComponentInChildren<Text>();
+        text.color = new Color(text.color.r, text.color.g, text.color.b, 0.25f);
     }
 
     private void ShowUI()
@@ -39,7 +38,6 @@ public class FinishLevelUI : MonoBehaviour
         nextLevelButton.interactable = true;
         finishGroup.transform.parent.gameObject.SetActive(true);
         finishGroup.gameObject.SetActive(true);
-        passengerCountText.text = $"Total passengers: {passengerCount.CurrentPassenger.ToString()}";
     }
 
     private void LoadNewLevel()
