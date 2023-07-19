@@ -1,12 +1,10 @@
 using Bus;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.EnhancedTouch;
-using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
 
 public class BusMovement : MonoBehaviour
 {
-    [SerializeField] private InputActionReference mobileMoveReference;
+    [SerializeField] private FloatingJoystick floatingJoystick;
     [SerializeField] private WheelCollider frontLeftWheel;
     [SerializeField] private Transform frontLeftWheelModel;
     [SerializeField] private WheelCollider frontRightWheel;
@@ -42,7 +40,9 @@ public class BusMovement : MonoBehaviour
         Touch.onFingerUp += OnAnyFingerUp;
         Touch.onFingerMove += OnAnyFingerMove;
 #endif
-
+#if YandexSDK
+        floatingJoystick.gameObject.SetActive(true);
+#endif
         frontLeftWheel.motorTorque = busSpeed;
         frontRightWheel.motorTorque = busSpeed;
         canMove = true;
@@ -86,7 +86,15 @@ public class BusMovement : MonoBehaviour
 
     private void MoveBus()
     {
+#if YandexSDK
+        float horizontalJoystick = floatingJoystick.Horizontal;
+        float wheelAngelRotation = 0;
+        if (floatingJoystick.isWorking)
+            wheelAngelRotation = horizontalJoystick < 0 ? Mathf.Lerp(0, -30, Mathf.Abs(horizontalJoystick)) : Mathf.Lerp(0, 30, Mathf.Abs(horizontalJoystick));
+#else
         float wheelAngelRotation = _horizontalMove * wheelSteerAngel;
+#endif
+
         frontLeftWheel.steerAngle = wheelAngelRotation;
         frontRightWheel.steerAngle = wheelAngelRotation;
 
@@ -101,6 +109,7 @@ public class BusMovement : MonoBehaviour
 
     private void StopBus()
     {
+        floatingJoystick.gameObject.SetActive(false);
         canMove = false;
         frontLeftWheel.motorTorque = 0;
         frontRightWheel.motorTorque = 0;

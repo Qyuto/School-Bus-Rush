@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using YG;
 
 namespace Save
 {
@@ -23,12 +25,28 @@ namespace Save
             _dataHandler = new FileDataHandler() { fileName = "player.allure" };
             _dataLoadPersistence = FindObjectsOfType<MonoBehaviour>().OfType<ILoadDataPersistence>().ToList();
             _dataSavePersistence = FindObjectsOfType<MonoBehaviour>().OfType<ISaveDataPersistence>().ToList();
-            PreLoadGame();
+            if (!YandexGame.SDKEnabled) YandexGame.GetDataEvent += OnYandexSdkLoad;
+            else PreLoadGame();
+        }
+
+        private void OnYandexSdkLoad()
+        {
+            if (YandexGame.SDKEnabled)
+            {
+                PreLoadGame();
+                StartCoroutine(CoroutineLoadGame());
+            }
+        }
+
+        IEnumerator CoroutineLoadGame()
+        {
+            yield return null;
+            LoadGame();
         }
 
         private void Start()
         {
-            LoadGame();
+            if (YandexGame.SDKEnabled) LoadGame();
         }
 
         private void NewGame()
@@ -39,12 +57,15 @@ namespace Save
         private void SaveGame()
         {
             foreach (var persistence in _dataSavePersistence) persistence.SaveGame(ref data);
-            _dataHandler.Save(data);
+            YandexSaveLoadAdapter.SaveForYandex(data);
+            YandexGame.SaveProgress();
+            // _dataHandler.Save(data);
         }
 
         private void PreLoadGame()
         {
-            _dataHandler.Load(ref data);
+            data = YandexSaveLoadAdapter.ConvertYandexSaveToGameData(YandexGame.savesData);
+            // _dataHandler.Load(ref data);
         }
 
         private void LoadGame()
@@ -59,6 +80,7 @@ namespace Save
             SaveGame();
             Instance = null;
             onLoadFinished = null;
+            YandexGame.GetDataEvent -= OnYandexSdkLoad;
         }
     }
 }

@@ -36,6 +36,7 @@ public class FinishLevelUI : MonoBehaviour
 
     private void ShowUI()
     {
+        nextLevelButton.interactable = true;
         finishGroup.transform.parent.gameObject.SetActive(true);
         finishGroup.gameObject.SetActive(true);
         passengerCountText.text = $"Total passengers: {passengerCount.CurrentPassenger.ToString()}";
