@@ -1,11 +1,10 @@
-using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class LevelLayerUI : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI moneyText;
+    [SerializeField] private Text moneyText;
     [SerializeField] private Button buttonRestart;
 
     private void Awake()

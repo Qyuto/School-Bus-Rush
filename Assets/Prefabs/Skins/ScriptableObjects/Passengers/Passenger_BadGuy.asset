@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Passenger_BadGuy
   m_EditorClassIdentifier: 
   key: passenger_badguy
-  cost: 4000
+  cost: 2000
   iconSprite: {fileID: 21300000, guid: 6fab2fb1cbba3e34d9fb69304f7ab834, type: 3}
   model: {fileID: 7478225697116208144, guid: 6fb37f825ee63264b9c2600bf1a52006, type: 3}
   type: 0

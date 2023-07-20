@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Passenger_SandMosnter
   m_EditorClassIdentifier: 
   key: passenger_sandmonster
-  cost: 12000
+  cost: 7000
   iconSprite: {fileID: 21300000, guid: 0c8c22e79111a9d4fbf63da93773e449, type: 3}
   model: {fileID: 4750614362417014489, guid: ac31d52b33592dc468c252add372e345, type: 3}
   type: 0

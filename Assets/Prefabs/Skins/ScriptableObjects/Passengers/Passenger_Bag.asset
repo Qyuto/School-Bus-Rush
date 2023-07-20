@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Passenger_Bag
   m_EditorClassIdentifier: 
   key: passenger_bag
-  cost: 10000
+  cost: 5000
   iconSprite: {fileID: 21300000, guid: e447c4a43dddc1e498e149ecbda81495, type: 3}
   model: {fileID: 192342, guid: 6c059c0bc43606241981195e5575b851, type: 3}
   type: 0

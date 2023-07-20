@@ -8,7 +8,7 @@ namespace UI.Shop
 {
     public class ShopUI : MonoBehaviour, ILoadDataPersistence
     {
-        [SerializeField] private TextMeshProUGUI moneyText;
+        [SerializeField] private Text moneyText;
         [SerializeField] private Button resumeGame;
         [SerializeField] private LoadLastLevel loadLastLevel;
         [SerializeField] private Button openPassenger;

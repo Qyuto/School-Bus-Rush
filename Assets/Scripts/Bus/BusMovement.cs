@@ -1,9 +1,12 @@
 using Bus;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.EnhancedTouch;
+using YG;
 
 public class BusMovement : MonoBehaviour
 {
+    [SerializeField] private InputActionReference pcMovementReference;
     [SerializeField] private FloatingJoystick floatingJoystick;
     [SerializeField] private WheelCollider frontLeftWheel;
     [SerializeField] private Transform frontLeftWheelModel;
@@ -16,6 +19,7 @@ public class BusMovement : MonoBehaviour
     [SerializeField] private float wheelSteerAngel = 30;
 
     private float _horizontalMove;
+    private float _horizontalKeyboardValue;
     private Rigidbody _busRigidBody;
     private int _lastIndexFinger;
     private BusLevelCompletion _levelCompletion;
@@ -42,10 +46,18 @@ public class BusMovement : MonoBehaviour
 #endif
 #if YandexSDK
         floatingJoystick.gameObject.SetActive(true);
+        pcMovementReference.action.performed += ReadValue;
+        pcMovementReference.action.canceled += ReadValue;
+        pcMovementReference.action.Enable();
 #endif
         frontLeftWheel.motorTorque = busSpeed;
         frontRightWheel.motorTorque = busSpeed;
         canMove = true;
+    }
+
+    private void ReadValue(InputAction.CallbackContext obj)
+    {
+        _horizontalKeyboardValue = obj.ReadValue<float>();
     }
 
     private void OnDisable()
@@ -55,6 +67,11 @@ public class BusMovement : MonoBehaviour
         Touch.onFingerUp -= OnAnyFingerUp;
         Touch.onFingerMove -= OnAnyFingerMove;
         mobileMoveReference.action.Disable();
+#endif
+#if YandexSDK
+        pcMovementReference.action.performed -= ReadValue;
+        pcMovementReference.action.canceled -= ReadValue;
+        pcMovementReference.action.Disable();
 #endif
     }
 
@@ -87,10 +104,10 @@ public class BusMovement : MonoBehaviour
     private void MoveBus()
     {
 #if YandexSDK
-        float horizontalJoystick = floatingJoystick.Horizontal;
+
+        _horizontalMove = floatingJoystick.isWorking ? floatingJoystick.Horizontal : _horizontalKeyboardValue;
         float wheelAngelRotation = 0;
-        if (floatingJoystick.isWorking)
-            wheelAngelRotation = horizontalJoystick < 0 ? Mathf.Lerp(0, -30, Mathf.Abs(horizontalJoystick)) : Mathf.Lerp(0, 30, Mathf.Abs(horizontalJoystick));
+        wheelAngelRotation = _horizontalMove < 0 ? Mathf.Lerp(0, -30, Mathf.Abs(_horizontalMove)) : Mathf.Lerp(0, 30, Mathf.Abs(_horizontalMove));
 #else
         float wheelAngelRotation = _horizontalMove * wheelSteerAngel;
 #endif
