@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Passenger_Nolant
   m_EditorClassIdentifier: 
   key: passenger_nolant
-  cost: 150
+  cost: 900
   iconSprite: {fileID: 21300000, guid: df725f8711ddcda4ab50659ace2b1f22, type: 3}
   model: {fileID: 2563576834007184323, guid: 0c943328826169d4a8d2a600d1897cab, type: 3}
   type: 0

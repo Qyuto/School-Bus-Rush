@@ -31,7 +31,7 @@ namespace Save
 
         private void OnYandexSdkLoad()
         {
-            if (YandexGame.SDKEnabled)
+            if (YandexGame.SDKEnabled && gameObject.activeSelf)
             {
                 PreLoadGame();
                 StartCoroutine(CoroutineLoadGame());

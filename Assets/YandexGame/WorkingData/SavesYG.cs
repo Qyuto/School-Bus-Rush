@@ -15,6 +15,7 @@ namespace YG
         public int lastLevel;
         public SkinData skinData;
         public string lastGameVersion;
+        public bool playerFinishedGame;
 
         public SavesYG()
         {
@@ -22,6 +23,7 @@ namespace YG
             lastLevel = 1;
             lastGameVersion = "0.0.0.0";
             skinData = new SkinData();
+            playerFinishedGame = false;
         }
     }
 }

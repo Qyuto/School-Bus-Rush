@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: School_Ancient_2
   m_EditorClassIdentifier: 
   key: school_ancient_2
-  cost: 0
+  cost: 2500
   iconSprite: {fileID: 21300000, guid: b52ff016874fd284993fc99ae65a118b, type: 3}
   model: {fileID: 3806031901381219322, guid: 7f9bcacc86ed67041b41911d30e9cdc9, type: 3}
   type: 1

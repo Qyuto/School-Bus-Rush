@@ -9,6 +9,7 @@ namespace Save
         public int lastLevel;
         public SkinData skinData;
         public string lastGameVersion;
+        public bool playerFinishedGame;
 
         public GameData(string gameVersion)
         {
@@ -16,6 +17,7 @@ namespace Save
             lastLevel = 1;
             skinData = new SkinData();
             lastGameVersion = gameVersion;
+            playerFinishedGame = false;
         }
     }
     

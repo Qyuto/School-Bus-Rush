@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Passenger_Humanoid
   m_EditorClassIdentifier: 
   key: passenger_humanoid
-  cost: 750
+  cost: 7500
   iconSprite: {fileID: 21300000, guid: 5f71930c86f99f44983b666fc08fe263, type: 3}
   model: {fileID: 3733192570276357795, guid: 64afc01b4e7549b4898ddab877a0bd88, type: 3}
   type: 0

@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 24d0ad385ac343038c52d088c8c2e7c5, type: 3}
-  m_Name: School_Ancient
+  m_Name: School_Prison
   m_EditorClassIdentifier: 
-  key: school_ancient
-  cost: 1000
-  iconSprite: {fileID: 21300000, guid: eceb0900168ab9e4c934953d01706893, type: 3}
-  model: {fileID: 4428904329495211377, guid: fe289af1be85ca74399c5c3a70cbebbd, type: 3}
+  key: school_prison
+  cost: 10000
+  iconSprite: {fileID: 21300000, guid: d5ba058fdd9d8f34887589ccda057261, type: 3}
+  model: {fileID: 5987603824682827097, guid: cc11711755d187946a2858bd092e8543, type: 3}
   type: 1

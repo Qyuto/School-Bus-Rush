@@ -1,7 +1,11 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Bus;
+using Level;
+using Save;
+using Random = UnityEngine.Random;
 
 public class FinishLevelUI : MonoBehaviour
 {
@@ -42,7 +46,8 @@ public class FinishLevelUI : MonoBehaviour
 
     private void LoadNewLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        LevelLoad levelLoad = new LevelLoad(DataPersistence.Instance.data);
+        levelLoad.LoadNextLevel();
     }
 
     private void RestartLevel()

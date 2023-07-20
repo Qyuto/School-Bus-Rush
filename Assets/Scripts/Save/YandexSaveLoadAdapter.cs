@@ -11,6 +11,7 @@ namespace Save
             savesYg.totalPassenger = gameData.totalPassenger;
             savesYg.lastLevel = gameData.lastLevel;
             savesYg.skinData = gameData.skinData;
+            savesYg.playerFinishedGame = gameData.playerFinishedGame;
         }
 
         public static GameData ConvertYandexSaveToGameData(SavesYG savesYg)
@@ -20,6 +21,7 @@ namespace Save
             newGameData.lastGameVersion = savesYg.lastGameVersion;
             newGameData.lastLevel = savesYg.lastLevel;
             newGameData.totalPassenger = savesYg.totalPassenger;
+            newGameData.playerFinishedGame = savesYg.playerFinishedGame;
             return newGameData;
         }
     }
