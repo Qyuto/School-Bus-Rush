@@ -2,12 +2,12 @@ using Bus;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.EnhancedTouch;
-using YG;
 
 public class BusMovement : MonoBehaviour
 {
     [SerializeField] private InputActionReference pcMovementReference;
     [SerializeField] private FloatingJoystick floatingJoystick;
+    [SerializeField] private float brakeTorque = 1;
     [SerializeField] private WheelCollider frontLeftWheel;
     [SerializeField] private Transform frontLeftWheelModel;
     [SerializeField] private WheelCollider frontRightWheel;
@@ -97,8 +97,8 @@ public class BusMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (canMove)
-            MoveBus();
+        if (!canMove) return;
+        MoveBus();
     }
 
     private void MoveBus()
@@ -130,9 +130,10 @@ public class BusMovement : MonoBehaviour
         canMove = false;
         frontLeftWheel.motorTorque = 0;
         frontRightWheel.motorTorque = 0;
-        frontLeftWheel.brakeTorque = 500000f;
-        frontRightWheel.brakeTorque = 500000f;
-        backLeftWheel.brakeTorque = 1000000f;
-        backRightWheel.brakeTorque = 1000000f;
+
+        frontLeftWheel.brakeTorque = brakeTorque;
+        frontRightWheel.brakeTorque = brakeTorque;
+        backLeftWheel.brakeTorque = brakeTorque;
+        backRightWheel.brakeTorque = brakeTorque;
     }
 }

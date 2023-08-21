@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24d0ad385ac343038c52d088c8c2e7c5, type: 3}
+  m_Name: School_Modern
+  m_EditorClassIdentifier: 
+  key: school_modern
+  cost: 8000
+  iconSprite: {fileID: 21300000, guid: 42e46715c46e0e346bd7d392c3ab757e, type: 3}
+  model: {fileID: 1884357634636894546, guid: c5bf988043c3da24c9910eec5dedb440, type: 3}
+  type: 1

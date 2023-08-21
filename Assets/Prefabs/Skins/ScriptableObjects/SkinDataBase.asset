@@ -13,16 +13,18 @@ MonoBehaviour:
   m_Name: SkinDataBase
   m_EditorClassIdentifier: 
   skinsData:
-  - {fileID: 11400000, guid: 8d46d7983aa0a2948b5d49a0f6fb0b28, type: 2}
-  - {fileID: 11400000, guid: 9767fceb009193c4987c001e4bfef4a0, type: 2}
   - {fileID: 11400000, guid: 3c179d707c1fee44387e2df4b88d1851, type: 2}
+  - {fileID: 11400000, guid: a099e4d84e4af754786c6b5c3719d84d, type: 2}
   - {fileID: 11400000, guid: 7cd59a90d251eb448ba0d1863d2a97d8, type: 2}
-  - {fileID: 11400000, guid: 7f5c8254893a7f448ab293e1ced837df, type: 2}
-  - {fileID: 11400000, guid: 85538e087477b1048a80a66d9d7ab7cf, type: 2}
   - {fileID: 11400000, guid: 30891175d540e354a87c00d5035fd7aa, type: 2}
+  - {fileID: 11400000, guid: 8d46d7983aa0a2948b5d49a0f6fb0b28, type: 2}
   - {fileID: 11400000, guid: 7004f42115e82574fb5ea67a33249e7f, type: 2}
-  - {fileID: 11400000, guid: 5a2b31efa52b67548abe3b38da7ece1b, type: 2}
+  - {fileID: 11400000, guid: 9767fceb009193c4987c001e4bfef4a0, type: 2}
   - {fileID: 11400000, guid: cc6071f912b34f547a027b4aeb244c23, type: 2}
   - {fileID: 11400000, guid: b6432b961bd599d449bc1e7fb4a8fd56, type: 2}
+  - {fileID: 11400000, guid: 85538e087477b1048a80a66d9d7ab7cf, type: 2}
   - {fileID: 11400000, guid: e67d7823f38daf343bbf6a0dcf2df65a, type: 2}
+  - {fileID: 11400000, guid: 5a2b31efa52b67548abe3b38da7ece1b, type: 2}
   - {fileID: 11400000, guid: 7574465d2de1e9243af40f33e2c635c5, type: 2}
+  - {fileID: 11400000, guid: 7f5c8254893a7f448ab293e1ced837df, type: 2}
+  - {fileID: 11400000, guid: fce5213f69906d1458df865fb4830143, type: 2}

@@ -64,7 +64,7 @@ namespace Level.School
         {
             if (_beforeUnloadingPassengerCount != _currentPassengerInSchool) return;
 
-            if (_currentPassengerInSchool >= minPassengerCount) _levelCompletion.onBusLevelComplete?.Invoke();
+            if (_currentPassengerInSchool >= minPassengerCount && !_levelCompletion.isFailed) _levelCompletion.onBusLevelComplete?.Invoke();
             else _levelCompletion.onBusLevelFailComplete?.Invoke();
         }
 
@@ -96,6 +96,7 @@ namespace Level.School
             _passengerCount = busInteractor.GetPassengerCountComponent();
             _levelCompletion = busInteractor.GetBusLevelCompletion();
             _ratePassenger = busInteractor.GetBusRatePassenger();
+            if (_passengerCount.CurrentPassenger == 0) _levelCompletion.onBusLevelFailComplete?.Invoke();
             AgentCoordinator agentCoordinator = _passengerCount.GetComponent<AgentCoordinator>();
 
             _schoolHouseUI.Init(_ratePassenger);

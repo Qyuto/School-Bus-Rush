@@ -7,17 +7,19 @@ namespace Level
     {
         [SerializeField] private GameObject startLayerUI;
         [SerializeField] private Button buttonStart;
-        [SerializeField] private BusMovement busMovement;
+        [SerializeField] private MonoBehaviour[] enabledObjects;
 
         private void Awake()
         {
             buttonStart.onClick.AddListener(EnableBusComponent);
-            busMovement.enabled = false;
+            foreach (var enabledObject in enabledObjects)
+                enabledObject.enabled = false;
         }
 
         private void EnableBusComponent()
         {
-            busMovement.enabled = true;
+            foreach (var enabledObject in enabledObjects)
+                enabledObject.enabled = true;
             startLayerUI.SetActive(false);
         }
     }

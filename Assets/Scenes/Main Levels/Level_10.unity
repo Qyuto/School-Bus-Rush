@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.16454126, g: 0.34349358, b: 0.4759761, a: 1}
+  m_IndirectSpecularColor: {r: 0.16468532, g: 0.34331265, b: 0.47358194, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -750,6 +750,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 274549730}
     m_Modifications:
+    - target: {fileID: -2260233537013531848, guid: db0271b39faa334498328bb103032981, type: 3}
+      propertyPath: minBoostValue
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7218386769955058290, guid: db0271b39faa334498328bb103032981, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -3512,7 +3516,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-10888
+  m_Name: pb_Mesh-70314
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -4212,7 +4216,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-10498
+  m_Name: pb_Mesh-71274
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -6723,6 +6727,14 @@ PrefabInstance:
     - target: {fileID: 3367185219727140606, guid: 5ae0fbe9bcaff30408c2288324c5e124, type: 3}
       propertyPath: m_Name
       value: Prototype_Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5597251180658408002, guid: 5ae0fbe9bcaff30408c2288324c5e124, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8258792047018664715, guid: 5ae0fbe9bcaff30408c2288324c5e124, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
